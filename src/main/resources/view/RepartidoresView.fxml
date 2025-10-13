@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.RepartidorViewController"
+            prefWidth="700" prefHeight="500">
+
+    <VBox spacing="10" alignment="CENTER"
+          AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+          AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+        <Label text="Gestión de Repartidores" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+
+        <!-- FORMULARIO -->
+        <GridPane hgap="10" vgap="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNombre" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtTelefono" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Vehículo:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtVehiculo" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Placa:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPlaca" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <!-- BOTONES -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Agregar" onAction="#agregarRepartidor"/>
+            <Button text="Eliminar" onAction="#eliminarRepartidor"/>
+            <Button text="Actualizar" onAction="#actualizarRepartidor"/>
+        </HBox>
+
+        <!-- TABLA -->
+        <TableView fx:id="tablaRepartidores" prefHeight="250" prefWidth="650">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
+                <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="120"/>
+                <TableColumn fx:id="colVehiculo" text="Vehículo" prefWidth="120"/>
+                <TableColumn fx:id="colPlaca" text="Placa" prefWidth="100"/>
+                <TableColumn fx:id="colDisponible" text="Disponible" prefWidth="80"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>
