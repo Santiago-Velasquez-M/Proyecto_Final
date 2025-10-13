@@ -13,34 +13,35 @@ public class EnvioRepository {
     }
 
     public void agregarEnvio(Envio envio) {
-        boolean existe = envios.stream()
-                .anyMatch(e -> e.getId().equals(envio.getId()));
+        if (envio == null || envio.getId() == null) {
+            System.out.println("No se puede agregar un envío nulo o sin ID.");
+            return;
+        }
+
+        boolean existe = envios.stream().anyMatch(e -> e.getId().equals(envio.getId()));
 
         if (!existe) {
             envios.add(envio);
+            System.out.println("Envío agregado: " + envio.getId());
         } else {
             System.out.println("Envío con ID " + envio.getId() + " ya existe. No se agregó nuevamente.");
         }
     }
 
     public Envio buscarEnvioPorId(String id) {
-        for (Envio e : envios) {
-            if (e.getId().equals(id)) {
-                return e;
-            }
-        }
-        return null;
+        if (id == null || id.isEmpty()) return null;
+        return envios.stream()
+                .filter(e -> e.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public void eliminarEnvio(String id) {
+        if (id == null || id.isEmpty()) return;
         envios.removeIf(e -> e.getId().equals(id));
+        System.out.println("Envío eliminado:" + id);
     }
-
     public List<Envio> obtenerEnvios() {
-        return envios;
-    }
-
-    public List<Envio> getListaEnvios() {
-        return envios;
+        return new ArrayList<>(envios);
     }
 }

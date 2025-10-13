@@ -24,7 +24,6 @@ public class RepartidorViewController {
     @FXML private TextField txtPlaca;
 
     private final ModelFactory modelFactory = ModelFactory.getInstance();
-
     private final ObservableList<Repartidor> listaRepartidores = FXCollections.observableArrayList();
 
     @FXML
@@ -44,62 +43,74 @@ public class RepartidorViewController {
                 new SimpleStringProperty(data.getValue().isDisponible() ? "Sí" : "No"));
     }
 
+    @FXML
     private void cargarRepartidores() {
         listaRepartidores.setAll(modelFactory.getRepartidorRepository().obtenerRepartidores());
         tablaRepartidores.setItems(listaRepartidores);
-
-        System.out.println("Repartidores cargados: " + listaRepartidores.size());
     }
 
     @FXML
     public void agregarRepartidor() {
-        String id = txtId.getText();
-        String nombre = txtNombre.getText();
-        String telefono = txtTelefono.getText();
-        String vehiculo = txtVehiculo.getText();
-        String placa = txtPlaca.getText();
+        String id = txtId.getText().trim();
+        String nombre = txtNombre.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        String vehiculo = txtVehiculo.getText().trim();
+        String placa = txtPlaca.getText().trim();
 
         if (id.isEmpty() || nombre.isEmpty() || telefono.isEmpty() || vehiculo.isEmpty() || placa.isEmpty()) {
-            mostrarAlerta("Error", "Todos los campos son obligatorios");
+            mostrarAlerta("Error", "Por favor completa todos los campos.");
+            return;
+        }
+
+        boolean existe = modelFactory.getRepartidorRepository()
+                .obtenerRepartidores()
+                .stream()
+                .anyMatch(r -> r.getId().equals(id));
+
+        if (existe) {
+            mostrarAlerta("Advertencia", "Ya existe un repartidor con el ID " + id);
             return;
         }
 
         Repartidor nuevo = new Repartidor(id, nombre, telefono, vehiculo, placa);
-        listaRepartidores.add(nuevo);
         modelFactory.getRepartidorRepository().agregarRepartidor(nuevo);
+        listaRepartidores.add(nuevo);
 
         limpiarCampos();
-        mostrarAlerta("Éxito", "Repartidor agregado correctamente");
+        mostrarAlerta("Éxito", "Repartidor agregado correctamente.\nYa está disponible en la gestión de envíos.");
     }
 
     @FXML
     public void eliminarRepartidor() {
         Repartidor seleccionado = tablaRepartidores.getSelectionModel().getSelectedItem();
-        if (seleccionado != null) {
-            modelFactory.getRepartidorRepository().eliminarRepartidor(seleccionado.getId());
-            listaRepartidores.remove(seleccionado);
-        } else {
-            mostrarAlerta("Error", "Selecciona un repartidor para eliminar");
+        if (seleccionado == null) {
+            mostrarAlerta("Atención", "Selecciona un repartidor para eliminar.");
+            return;
         }
+
+        modelFactory.getRepartidorRepository().eliminarRepartidor(seleccionado.getId());
+        listaRepartidores.remove(seleccionado);
+        limpiarCampos();
+        mostrarAlerta("Éxito", "Repartidor eliminado correctamente.");
     }
 
     @FXML
     public void actualizarRepartidor() {
         Repartidor seleccionado = tablaRepartidores.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
-            mostrarAlerta("Error", "Selecciona un repartidor para actualizar");
+            mostrarAlerta("Atención", "Selecciona un repartidor para actualizar.");
             return;
         }
 
-        seleccionado.setNombre(txtNombre.getText());
-        seleccionado.setTelefono(txtTelefono.getText());
-        seleccionado.setVehiculo(txtVehiculo.getText());
-        seleccionado.setPlaca(txtPlaca.getText());
-        tablaRepartidores.refresh();
+        seleccionado.setNombre(txtNombre.getText().trim());
+        seleccionado.setTelefono(txtTelefono.getText().trim());
+        seleccionado.setVehiculo(txtVehiculo.getText().trim());
+        seleccionado.setPlaca(txtPlaca.getText().trim());
 
         modelFactory.getRepartidorRepository().actualizarRepartidor(seleccionado);
+        tablaRepartidores.refresh();
         limpiarCampos();
-        mostrarAlerta("Éxito", "Repartidor actualizado correctamente");
+        mostrarAlerta("Éxito", "Repartidor actualizado correctamente.");
     }
 
     private void configurarSeleccionTabla() {
@@ -123,10 +134,10 @@ public class RepartidorViewController {
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }

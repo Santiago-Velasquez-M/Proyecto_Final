@@ -7,14 +7,14 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.EnvioViewController"
-            prefWidth="800" prefHeight="600">
+            prefWidth="850" prefHeight="600">
 
-    <VBox spacing="10" alignment="CENTER">
+    <VBox spacing="15" alignment="CENTER">
         <padding>
-            <Insets top="20" right="20" bottom="20" left="20"/>
+            <Insets top="20" right="25" bottom="20" left="25"/>
         </padding>
 
-        <Label text="Gestión de Envíos" style="-fx-font-size: 20; -fx-font-weight: bold;" />
+        <Label text="Gestión de Envíos" style="-fx-font-size: 22; -fx-font-weight: bold;" />
 
         <GridPane hgap="10" vgap="10">
             <padding>
@@ -22,7 +22,7 @@
             </padding>
 
             <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <TextField fx:id="txtId" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200"/>
 
             <Label text="Origen:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
             <TextField fx:id="txtOrigen" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
@@ -40,29 +40,29 @@
             <TextField fx:id="txtCosto" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
             <Label text="Repartidor:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtRepartidor" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <ComboBox fx:id="comboRepartidor" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="200"/>
 
             <Label text="Usuario:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtUsuario" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <ComboBox fx:id="comboUsuario" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="200"/>
         </GridPane>
 
-        <HBox spacing="10" alignment="CENTER">
+        <HBox spacing="12" alignment="CENTER">
             <Button text="Agregar" onAction="#agregarEnvio" />
             <Button text="Actualizar" onAction="#actualizarEnvio" />
             <Button text="Eliminar" onAction="#eliminarEnvio" />
             <Button text="Cargar Lista" onAction="#cargarEnvios" />
         </HBox>
 
-        <TableView fx:id="tablaEnvios" prefHeight="300" prefWidth="700">
+        <TableView fx:id="tablaEnvios" prefHeight="300" prefWidth="800">
             <columns>
                 <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
-                <TableColumn fx:id="colOrigen" text="Origen" prefWidth="100"/>
-                <TableColumn fx:id="colDestino" text="Destino" prefWidth="100"/>
-                <TableColumn fx:id="colPeso" text="Peso" prefWidth="80"/>
-                <TableColumn fx:id="colVolumen" text="Volumen" prefWidth="80"/>
-                <TableColumn fx:id="colCosto" text="Costo" prefWidth="80"/>
-                <TableColumn fx:id="colRepartidor" text="Repartidor" prefWidth="100"/>
-                <TableColumn fx:id="colUsuario" text="Usuario" prefWidth="100"/>
+                <TableColumn fx:id="colOrigen" text="Origen" prefWidth="120"/>
+                <TableColumn fx:id="colDestino" text="Destino" prefWidth="120"/>
+                <TableColumn fx:id="colPeso" text="Peso (kg)" prefWidth="80"/>
+                <TableColumn fx:id="colVolumen" text="Volumen (m³)" prefWidth="100"/>
+                <TableColumn fx:id="colCosto" text="Costo ($)" prefWidth="90"/>
+                <TableColumn fx:id="colRepartidor" text="Repartidor" prefWidth="120"/>
+                <TableColumn fx:id="colUsuario" text="Usuario" prefWidth="120"/>
             </columns>
         </TableView>
     </VBox>
