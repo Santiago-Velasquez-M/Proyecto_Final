@@ -72,7 +72,6 @@ public class ModelFactory {
         repartidorRepository.agregarRepartidor(repDaniela);
         repartidorRepository.agregarRepartidor(repJorge);
 
-        // 🔹 Pagos
         Pago pago1 = new Pago("P001", 7500, MetodoPago.TARJETA_CREDITO, LocalDateTime.now(), ResultadoPago.APROBADO);
         Pago pago2 = new Pago("P002", 6400, MetodoPago.EFECTIVO, LocalDateTime.now(), ResultadoPago.APROBADO);
         Pago pago3 = new Pago("P003", 8200, MetodoPago.TRANSFERENCIA, LocalDateTime.now(), ResultadoPago.RECHAZADO);

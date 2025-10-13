@@ -5,8 +5,8 @@ import co.edu.uniquindio.biblioteca.parcial1.Model.Direccion;
 public class DireccionBuilder {
 
     private String idDireccion;
-    private String nombre;       // antes 'alias'
-    private String direccion;    // antes 'calle'
+    private String nombre;
+    private String direccion;
     private String ciudad;
     private String coordenadas;
 

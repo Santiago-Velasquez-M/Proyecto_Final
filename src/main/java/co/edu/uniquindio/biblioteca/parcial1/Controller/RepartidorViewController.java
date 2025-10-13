@@ -1,6 +1,8 @@
 package co.edu.uniquindio.biblioteca.parcial1.Controller;
 
+import co.edu.uniquindio.biblioteca.parcial1.Factory.ModelFactory;
 import co.edu.uniquindio.biblioteca.parcial1.Model.Repartidor;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,21 +23,32 @@ public class RepartidorViewController {
     @FXML private TextField txtVehiculo;
     @FXML private TextField txtPlaca;
 
+    private final ModelFactory modelFactory = ModelFactory.getInstance();
+
     private final ObservableList<Repartidor> listaRepartidores = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        // Configurar columnas
-        colId.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getId()));
-        colNombre.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombre()));
-        colTelefono.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getTelefono()));
-        colVehiculo.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getVehiculo()));
-        colPlaca.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getPlaca()));
-        colDisponible.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
-                data.getValue().isDisponible() ? "Sí" : "No"
-        ));
+        configurarColumnas();
+        cargarRepartidores();
+        configurarSeleccionTabla();
+    }
 
+    private void configurarColumnas() {
+        colId.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getId()));
+        colNombre.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNombre()));
+        colTelefono.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTelefono()));
+        colVehiculo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getVehiculo()));
+        colPlaca.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPlaca()));
+        colDisponible.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().isDisponible() ? "Sí" : "No"));
+    }
+
+    private void cargarRepartidores() {
+        listaRepartidores.setAll(modelFactory.getRepartidorRepository().obtenerRepartidores());
         tablaRepartidores.setItems(listaRepartidores);
+
+        System.out.println("Repartidores cargados: " + listaRepartidores.size());
     }
 
     @FXML
@@ -53,13 +66,17 @@ public class RepartidorViewController {
 
         Repartidor nuevo = new Repartidor(id, nombre, telefono, vehiculo, placa);
         listaRepartidores.add(nuevo);
+        modelFactory.getRepartidorRepository().agregarRepartidor(nuevo);
+
         limpiarCampos();
+        mostrarAlerta("Éxito", "Repartidor agregado correctamente");
     }
 
     @FXML
     public void eliminarRepartidor() {
         Repartidor seleccionado = tablaRepartidores.getSelectionModel().getSelectedItem();
         if (seleccionado != null) {
+            modelFactory.getRepartidorRepository().eliminarRepartidor(seleccionado.getId());
             listaRepartidores.remove(seleccionado);
         } else {
             mostrarAlerta("Error", "Selecciona un repartidor para eliminar");
@@ -79,7 +96,22 @@ public class RepartidorViewController {
         seleccionado.setVehiculo(txtVehiculo.getText());
         seleccionado.setPlaca(txtPlaca.getText());
         tablaRepartidores.refresh();
+
+        modelFactory.getRepartidorRepository().actualizarRepartidor(seleccionado);
         limpiarCampos();
+        mostrarAlerta("Éxito", "Repartidor actualizado correctamente");
+    }
+
+    private void configurarSeleccionTabla() {
+        tablaRepartidores.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
+            if (newSel != null) {
+                txtId.setText(newSel.getId());
+                txtNombre.setText(newSel.getNombre());
+                txtTelefono.setText(newSel.getTelefono());
+                txtVehiculo.setText(newSel.getVehiculo());
+                txtPlaca.setText(newSel.getPlaca());
+            }
+        });
     }
 
     private void limpiarCampos() {
