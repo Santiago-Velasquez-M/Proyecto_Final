@@ -19,7 +19,7 @@ public class DireccionService implements IDireccionService {
         for (int i = 0; i < direcciones.size(); i++) {
             Direccion d = direcciones.get(i);
             if (d.getIdDireccion().equalsIgnoreCase(direccion.getIdDireccion())) {
-                return false; // Ya existe
+                return false;
             }
         }
 

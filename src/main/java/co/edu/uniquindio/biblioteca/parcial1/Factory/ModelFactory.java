@@ -47,7 +47,6 @@ public class ModelFactory {
         empresaLogisticaFacade.getUsuarioService().crearUsuario(usuario1);
         empresaLogisticaFacade.getUsuarioService().crearUsuario(usuario2);
 
-        // ==== REPARTIDORES ====
         Repartidor repartidor1 = new Repartidor("R001", "Carlos Ramírez", "", "3103833464",
                 "Moto", "ABC-123", "Cali", DisponibilidadRepartidor.ACTIVO);
 
@@ -57,13 +56,11 @@ public class ModelFactory {
         empresaLogisticaFacade.getRepartidorService().crearRepartidor(repartidor1);
         empresaLogisticaFacade.getRepartidorService().crearRepartidor(repartidor2);
 
-        // ==== TARIFAS ====
         Tarifa tarifaLocal = new Tarifa("T001", 1000, 5000, 2000, 200, 250);
         Tarifa tarifaNacional = new Tarifa("T002", 15000, 5000, 4000, 150, 350);
         empresaLogisticaFacade.getTarifaService().crearTarifa(tarifaLocal);
         empresaLogisticaFacade.getTarifaService().crearTarifa(tarifaNacional);
 
-        // ==== DIRECCIONES ====
         Direccion dirOrigen1 = new Direccion("D001", "Cali", "Cra 12 #45-32", "", "", "");
         Direccion dirDestino1 = new Direccion("D002", "Bogotá", "Av 68 #10-20", "", "", "");
         Direccion dirOrigen2 = new Direccion("D003", "Medellín", "Cl 70 #52-30", "", "", "");
@@ -116,6 +113,6 @@ public class ModelFactory {
         empresaLogisticaFacade.getEnvioService().crearEnvio(envio1);
         empresaLogisticaFacade.getEnvioService().crearEnvio(envio2);
 
-        System.out.println("✅ Datos de prueba cargados correctamente en el sistema.");
+        System.out.println("Datos de prueba cargados correctamente en el sistema.");
     }
 }

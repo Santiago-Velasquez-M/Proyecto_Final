@@ -81,7 +81,6 @@ public class EnvioService implements IEnvioService {
             if (envio.getIdEnvio().equalsIgnoreCase(idEnvio)) {
                 if (envio.getRepartidor() == null ||
                         !envio.getRepartidor().getIdRepartidor().equalsIgnoreCase(idRepartidor)) {
-                    // Aquí podrías buscar al repartidor y asignarlo
                 }
                 return;
             }
