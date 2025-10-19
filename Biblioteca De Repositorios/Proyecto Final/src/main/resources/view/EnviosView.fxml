@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.EnvioViewController"
+            prefWidth="850" prefHeight="600">
+
+    <VBox spacing="15" alignment="CENTER">
+        <padding>
+            <Insets top="20" right="25" bottom="20" left="25"/>
+        </padding>
+
+        <Label text="Gestión de Envíos" style="-fx-font-size: 22; -fx-font-weight: bold;" />
+
+        <GridPane hgap="10" vgap="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtId" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200"/>
+
+            <Label text="Origen:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtOrigen" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Destino:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDestino" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Peso (kg):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPeso" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Volumen (m³):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtVolumen" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Costo:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtCosto" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Repartidor:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboRepartidor" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="200"/>
+
+            <Label text="Usuario:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboUsuario" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="200"/>
+        </GridPane>
+
+        <HBox spacing="12" alignment="CENTER">
+            <Button text="Agregar" onAction="#agregarEnvio" />
+            <Button text="Actualizar" onAction="#actualizarEnvio" />
+            <Button text="Eliminar" onAction="#eliminarEnvio" />
+            <Button text="Cargar Lista" onAction="#cargarEnvios" />
+        </HBox>
+
+        <TableView fx:id="tablaEnvios" prefHeight="300" prefWidth="800">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                <TableColumn fx:id="colOrigen" text="Origen" prefWidth="120"/>
+                <TableColumn fx:id="colDestino" text="Destino" prefWidth="120"/>
+                <TableColumn fx:id="colPeso" text="Peso (kg)" prefWidth="80"/>
+                <TableColumn fx:id="colVolumen" text="Volumen (m³)" prefWidth="100"/>
+                <TableColumn fx:id="colCosto" text="Costo ($)" prefWidth="90"/>
+                <TableColumn fx:id="colRepartidor" text="Repartidor" prefWidth="120"/>
+                <TableColumn fx:id="colUsuario" text="Usuario" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

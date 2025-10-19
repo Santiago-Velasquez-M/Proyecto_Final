@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.PagoViewController"
+            prefWidth="800" prefHeight="600">
+
+    <VBox spacing="10" alignment="CENTER">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+
+        <Label text="Gestión de Pagos" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+        <GridPane hgap="10" vgap="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="ID Pago:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtIdPago" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Monto:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtMonto" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Método de Pago:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboMetodo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Resultado:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboResultado" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Agregar" onAction="#agregarPago"/>
+            <Button text="Eliminar" onAction="#eliminarPago"/>
+            <Button text="Cargar" onAction="#cargarPagos"/>
+        </HBox>
+
+        <TableView fx:id="tablaPagos" prefWidth="700" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="colIdPago" text="ID Pago" prefWidth="120"/>
+                <TableColumn fx:id="colMonto" text="Monto" prefWidth="100"/>
+                <TableColumn fx:id="colMetodo" text="Método" prefWidth="150"/>
+                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="180"/>
+                <TableColumn fx:id="colResultado" text="Resultado" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>
