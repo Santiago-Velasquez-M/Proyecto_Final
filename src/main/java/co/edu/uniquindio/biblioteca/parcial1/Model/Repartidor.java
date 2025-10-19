@@ -1,29 +1,37 @@
 package co.edu.uniquindio.biblioteca.parcial1.Model;
 
+import co.edu.uniquindio.biblioteca.parcial1.Enum.DisponibilidadRepartidor;
+
 public class Repartidor {
 
-    private String id;
+    private String idRepartidor;
     private String nombre;
+    private String documento;
     private String telefono;
     private String vehiculo;
     private String placa;
-    private boolean disponible;
+    private String zonaCobertura;
+    private DisponibilidadRepartidor disponibilidadRepartidor;
 
-    public Repartidor(String id, String nombre, String telefono, String vehiculo, String placa) {
-        this.id = id;
+    public Repartidor(String idRepartidor, String nombre, String documento, String telefono,
+                      String vehiculo, String placa, String zonaCobertura,
+                      DisponibilidadRepartidor disponibilidadRepartidor) {
+        this.idRepartidor = idRepartidor;
         this.nombre = nombre;
+        this.documento = documento;
         this.telefono = telefono;
         this.vehiculo = vehiculo;
         this.placa = placa;
-        this.disponible = true;
+        this.zonaCobertura = zonaCobertura;
+        this.disponibilidadRepartidor = disponibilidadRepartidor;
     }
 
-    public String getId() {
-        return id;
+    public String getIdRepartidor() {
+        return idRepartidor;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdRepartidor(String idRepartidor) {
+        this.idRepartidor = idRepartidor;
     }
 
     public String getNombre() {
@@ -32,6 +40,14 @@ public class Repartidor {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public String getTelefono() {
@@ -58,11 +74,33 @@ public class Repartidor {
         this.placa = placa;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public String getZonaCobertura() {
+        return zonaCobertura;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setZonaCobertura(String zonaCobertura) {
+        this.zonaCobertura = zonaCobertura;
+    }
+
+    public DisponibilidadRepartidor getDisponibilidadRepartidor() {
+        return disponibilidadRepartidor;
+    }
+
+    public void setDisponibilidadRepartidor(DisponibilidadRepartidor disponibilidadRepartidor) {
+        this.disponibilidadRepartidor = disponibilidadRepartidor;
+    }
+
+    @Override
+    public String toString() {
+        return "Repartidor{" +
+                "idRepartidor='" + idRepartidor + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", documento='" + documento + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", vehiculo='" + vehiculo + '\'' +
+                ", placa='" + placa + '\'' +
+                ", zonaCobertura='" + zonaCobertura + '\'' +
+                ", disponibilidad=" + (disponibilidadRepartidor != null ? disponibilidadRepartidor.name() : "N/A") +
+                '}';
     }
 }

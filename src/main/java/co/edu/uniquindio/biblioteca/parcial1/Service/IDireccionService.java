@@ -2,7 +2,11 @@ package co.edu.uniquindio.biblioteca.parcial1.Service;
 
 import co.edu.uniquindio.biblioteca.parcial1.Model.Direccion;
 
-public interface IDireccionService extends ICrudService<Direccion> {
+public interface IDireccionService {
 
-    Direccion buscarPorCiudad(String ciudad);
+    boolean crearDireccion(Direccion direccion);
+    Direccion buscarDireccionPorId(String idDireccion);
+    boolean actualizarDireccion(String idDireccion, Direccion nuevaDireccion);
+    boolean eliminarDireccion(String idDireccion);
+
 }

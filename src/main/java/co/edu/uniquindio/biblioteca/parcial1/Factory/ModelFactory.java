@@ -1,28 +1,25 @@
 package co.edu.uniquindio.biblioteca.parcial1.Factory;
 
+import co.edu.uniquindio.biblioteca.parcial1.Enum.DisponibilidadRepartidor;
+import co.edu.uniquindio.biblioteca.parcial1.Enum.EstadoEnvio;
+import co.edu.uniquindio.biblioteca.parcial1.Enum.MetodoPago;
+import co.edu.uniquindio.biblioteca.parcial1.Enum.ResultadoPago;
 import co.edu.uniquindio.biblioteca.parcial1.Model.*;
-import co.edu.uniquindio.biblioteca.parcial1.Repository.*;
-import co.edu.uniquindio.biblioteca.parcial1.Enum.*;
+import co.edu.uniquindio.biblioteca.parcial1.Model.Builder.EnvioBuilder;
+import co.edu.uniquindio.biblioteca.parcial1.Service.IEmpresaLogisticaService;
+import co.edu.uniquindio.biblioteca.parcial1.facade.EmpresaLogisticaFacade;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class ModelFactory {
 
     private static ModelFactory instance;
-
-
-    private final UsuarioRepository usuarioRepository;
-    private final RepartidorRepository repartidorRepository;
-    private final EnvioRepository envioRepository;
-    private final PagoRepository pagoRepository;
+    private final IEmpresaLogisticaService empresaLogisticaFacade;
+    private EmpresaLogistica empresaLogistica;
 
     private ModelFactory() {
-        usuarioRepository = new UsuarioRepository();
-        repartidorRepository = new RepartidorRepository();
-        envioRepository = new EnvioRepository();
-        pagoRepository = new PagoRepository();
-
-        cargarDatosQuemados();
+        empresaLogisticaFacade = new EmpresaLogisticaFacade();
+        inicializarDatos();
     }
 
     public static ModelFactory getInstance() {
@@ -32,70 +29,93 @@ public class ModelFactory {
         return instance;
     }
 
-
-    public UsuarioRepository getUsuarioRepository() {
-        return usuarioRepository;
+    public IEmpresaLogisticaService getEmpresaLogisticaFacade() {
+        return empresaLogisticaFacade;
     }
 
-    public RepartidorRepository getRepartidorRepository() {
-        return repartidorRepository;
+    public EmpresaLogistica getEmpresaLogistica() {
+        return empresaLogistica;
     }
 
-    public EnvioRepository getEnvioRepository() {
-        return envioRepository;
-    }
+    private void inicializarDatos() {
 
-    public PagoRepository getPagoRepository() {
-        return pagoRepository;
-    }
+        empresaLogistica = new EmpresaLogistica();
+        empresaLogistica.setNombre("Logística Express S.A.S");
 
+        Usuario usuario1 = new Usuario("U001", "Juan Pérez", "juan@correo.com", "1234");
+        Usuario usuario2 = new Usuario("U002", "María Gómez", "maria@correo.com", "abcd");
+        empresaLogisticaFacade.getUsuarioService().crearUsuario(usuario1);
+        empresaLogisticaFacade.getUsuarioService().crearUsuario(usuario2);
 
-    private void cargarDatosQuemados() {
+        // ==== REPARTIDORES ====
+        Repartidor repartidor1 = new Repartidor("R001", "Carlos Ramírez", "", "3103833464",
+                "Moto", "ABC-123", "Cali", DisponibilidadRepartidor.ACTIVO);
 
-        Direccion dirCasaAna = new Direccion("D001", "Casa", "Calle 10 #5-33", "Armenia", "4.533,-75.681");
-        Direccion dirTrabajoLuis = new Direccion("D002", "Trabajo", "Cra 8 #12-45", "Pereira", "4.814,-75.694");
-        Direccion dirCasaMaria = new Direccion("D003", "Casa", "Av Bolívar 123", "Cali", "3.451,-76.531");
+        Repartidor repartidor2 = new Repartidor("R002", "Laura Sánchez", "", "3147454306",
+                "Camión", "XYZ-987", "Bogotá", DisponibilidadRepartidor.INACTIVO);
 
-        Usuario ana = new Usuario("U001", "Ana Pérez", "ana.perez@mail.com", "3104567890", new ArrayList<>());
-        Usuario luis = new Usuario("U002", "Luis Díaz", "luis.diaz@mail.com", "3119876543", new ArrayList<>());
-        Usuario maria = new Usuario("U003", "María López", "maria.lopez@mail.com", "3001234567", new ArrayList<>());
+        empresaLogisticaFacade.getRepartidorService().crearRepartidor(repartidor1);
+        empresaLogisticaFacade.getRepartidorService().crearRepartidor(repartidor2);
 
-        usuarioRepository.agregarUsuario(ana);
-        usuarioRepository.agregarUsuario(luis);
-        usuarioRepository.agregarUsuario(maria);
+        // ==== TARIFAS ====
+        Tarifa tarifaLocal = new Tarifa("T001", 1000, 5000, 2000, 200, 250);
+        Tarifa tarifaNacional = new Tarifa("T002", 15000, 5000, 4000, 150, 350);
+        empresaLogisticaFacade.getTarifaService().crearTarifa(tarifaLocal);
+        empresaLogisticaFacade.getTarifaService().crearTarifa(tarifaNacional);
 
-        Repartidor repCarlos = new Repartidor("REP001", "Carlos Pérez", "3124567890", "Moto", "ABC-123");
-        Repartidor repDaniela = new Repartidor("REP002", "Daniela Gómez", "3109876543", "Carro", "XYZ-789");
-        Repartidor repJorge = new Repartidor("REP003", "Jorge Ruiz", "3001234567", "Camioneta", "LMN-456");
+        // ==== DIRECCIONES ====
+        Direccion dirOrigen1 = new Direccion("D001", "Cali", "Cra 12 #45-32", "", "", "");
+        Direccion dirDestino1 = new Direccion("D002", "Bogotá", "Av 68 #10-20", "", "", "");
+        Direccion dirOrigen2 = new Direccion("D003", "Medellín", "Cl 70 #52-30", "", "", "");
+        Direccion dirDestino2 = new Direccion("D004", "Barranquilla", "Cra 40 #30-15", "", "", "");
 
-        repartidorRepository.agregarRepartidor(repCarlos);
-        repartidorRepository.agregarRepartidor(repDaniela);
-        repartidorRepository.agregarRepartidor(repJorge);
+        empresaLogisticaFacade.getDireccionService().crearDireccion(dirOrigen1);
+        empresaLogisticaFacade.getDireccionService().crearDireccion(dirDestino1);
+        empresaLogisticaFacade.getDireccionService().crearDireccion(dirOrigen2);
+        empresaLogisticaFacade.getDireccionService().crearDireccion(dirDestino2);
 
-        Pago pago1 = new Pago("P001", 7500, MetodoPago.TARJETA_CREDITO, LocalDateTime.now(), ResultadoPago.APROBADO);
-        Pago pago2 = new Pago("P002", 6400, MetodoPago.EFECTIVO, LocalDateTime.now(), ResultadoPago.APROBADO);
-        Pago pago3 = new Pago("P003", 8200, MetodoPago.TRANSFERENCIA, LocalDateTime.now(), ResultadoPago.RECHAZADO);
+        Pago pago1 = new Pago("P001", 20000, MetodoPago.TARJETA_CREDITO, ResultadoPago.APROBADO);
+        Pago pago2 = new Pago("P002", 35000, MetodoPago.TARJETA_DEBITO, ResultadoPago.RECHAZADO);
+        empresaLogisticaFacade.getPagoService().crearPago(pago1);
+        empresaLogisticaFacade.getPagoService().crearPago(pago2);
 
-        pagoRepository.agregarPago(pago1);
-        pagoRepository.agregarPago(pago2);
-        pagoRepository.agregarPago(pago3);
+        Envio envio1 = new EnvioBuilder()
+                .idEnvio("E001")
+                .origen(dirOrigen1)
+                .destino(dirDestino1)
+                .peso(10.5)
+                .volumen(2.3)
+                .costo(empresaLogisticaFacade.getTarifaService()
+                        .calcularCosto(10.5, 2.3, true))
+                .estadoEnvio(EstadoEnvio.ASIGNADO)
+                .fechaCreacion(LocalDateTime.now())
+                .fechaEntregaEstimada(LocalDateTime.now().plusDays(2))
+                .usuario(usuario1)
+                .repartidor(repartidor1)
+                .pago(pago1)
+                .tarifa(tarifaLocal)
+                .build();
 
-        Envio envio1 = new Envio(dirCasaAna, dirTrabajoLuis, 1.2, 0.3, 7500,
-                LocalDateTime.now().plusDays(2), repCarlos, ana, pago1);
-        envio1.setId("ENV001");
+        Envio envio2 = new EnvioBuilder()
+                .idEnvio("E002")
+                .origen(dirOrigen2)
+                .destino(dirDestino2)
+                .peso(20.0)
+                .volumen(5.0)
+                .costo(empresaLogisticaFacade.getTarifaService()
+                        .calcularCosto(20.0, 5.0, true))
+                .estadoEnvio(EstadoEnvio.EN_RUTA)
+                .fechaCreacion(LocalDateTime.now())
+                .fechaEntregaEstimada(LocalDateTime.now().plusDays(3))
+                .usuario(usuario2)
+                .repartidor(repartidor2)
+                .pago(pago2)
+                .tarifa(tarifaNacional)
+                .build();
 
-        Envio envio2 = new Envio(dirTrabajoLuis, dirCasaMaria, 2.5, 0.5, 6400,
-                LocalDateTime.now().plusDays(3), repDaniela, luis, pago2);
-        envio2.setId("ENV002");
+        empresaLogisticaFacade.getEnvioService().crearEnvio(envio1);
+        empresaLogisticaFacade.getEnvioService().crearEnvio(envio2);
 
-        Envio envio3 = new Envio(dirCasaMaria, dirCasaAna, 3.1, 0.8, 8200,
-                LocalDateTime.now().plusDays(1), repJorge, maria, pago3);
-        envio3.setId("ENV003");
-
-        envioRepository.agregarEnvio(envio1);
-        envioRepository.agregarEnvio(envio2);
-        envioRepository.agregarEnvio(envio3);
-
-        System.out.println("Datos quemados cargados correctamente sin duplicados.");
+        System.out.println("✅ Datos de prueba cargados correctamente en el sistema.");
     }
 }

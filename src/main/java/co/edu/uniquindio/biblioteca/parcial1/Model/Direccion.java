@@ -6,14 +6,17 @@ public class Direccion {
     private String nombre;
     private String direccion;
     private String ciudad;
-    private String coordenadas;
+    private String latitud;
+    private String longitud;
 
-    public Direccion(String idDireccion, String nombre, String direccion, String ciudad, String coordenadas) {
+    public Direccion(String idDireccion, String nombre, String direccion, String ciudad
+            , String latitud, String longitud) {
         this.idDireccion = idDireccion;
         this.nombre = nombre;
         this.direccion = direccion;
         this.ciudad = ciudad;
-        this.coordenadas = coordenadas;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public String getIdDireccion() {
@@ -48,12 +51,32 @@ public class Direccion {
         this.ciudad = ciudad;
     }
 
-    public String getCoordenadas() {
-        return coordenadas;
+    public String getLatitud() {
+        return latitud;
     }
 
-    public void setCoordenadas(String coordenadas) {
-        this.coordenadas = coordenadas;
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
     }
 
-}
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
+
+    @Override
+    public String toString() {
+        return "Direccion{" +
+                "idDireccion='" + idDireccion + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", latitud='" + (latitud != null ? latitud : "N/A") + '\'' +
+                ", longitud='" + (longitud != null ? longitud : "N/A") + '\'' +
+                '}';
+        }
+
+    }
