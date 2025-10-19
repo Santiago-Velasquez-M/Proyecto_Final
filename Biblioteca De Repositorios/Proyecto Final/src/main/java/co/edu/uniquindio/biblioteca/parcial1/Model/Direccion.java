@@ -2,18 +2,23 @@ package co.edu.uniquindio.biblioteca.parcial1.Model;
 
 public class Direccion {
 
+
     private String idDireccion;
     private String nombre;
     private String direccion;
     private String ciudad;
+    private String latitud;
+    private String longitud;
     private String coordenadas;
 
-    public Direccion(String idDireccion, String nombre, String direccion, String ciudad, String coordenadas) {
+    public Direccion(String idDireccion, String nombre, String direccion, String ciudad
+            , String latitud, String longitud) {
         this.idDireccion = idDireccion;
         this.nombre = nombre;
         this.direccion = direccion;
         this.ciudad = ciudad;
-        this.coordenadas = coordenadas;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public String getIdDireccion() {
@@ -48,6 +53,22 @@ public class Direccion {
         this.ciudad = ciudad;
     }
 
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
+
     public String getCoordenadas() {
         return coordenadas;
     }
@@ -55,5 +76,4 @@ public class Direccion {
     public void setCoordenadas(String coordenadas) {
         this.coordenadas = coordenadas;
     }
-
 }

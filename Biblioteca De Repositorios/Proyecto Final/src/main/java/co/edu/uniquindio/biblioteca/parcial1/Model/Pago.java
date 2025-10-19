@@ -11,10 +11,6 @@ public class Pago {
     private LocalDateTime fechaPago;
     private ResultadoPago resultado;
 
-    /**
-     * Constructor que genera la fecha automáticamente (ahora).
-     * Uso: new Pago("P001", 7500, MetodoPago.TARJETA_CREDITO, ResultadoPago.APROBADO);
-     */
     public Pago(String idPago, double monto, MetodoPago metodoPago, ResultadoPago resultado) {
         this.idPago = idPago;
         this.monto = monto;
@@ -23,10 +19,6 @@ public class Pago {
         this.resultado = resultado;
     }
 
-    /**
-     * Constructor que recibe la fecha explícitamente.
-     * Uso: new Pago("P001", 7500, MetodoPago.TARJETA_CREDITO, LocalDateTime.now(), ResultadoPago.APROBADO);
-     */
     public Pago(String idPago, double monto, MetodoPago metodoPago, LocalDateTime fechaPago, ResultadoPago resultado) {
         this.idPago = idPago;
         this.monto = monto;
@@ -35,7 +27,10 @@ public class Pago {
         this.resultado = resultado;
     }
 
-    // Getters y setters
+    public Pago() {
+        this.fechaPago = LocalDateTime.now();
+    }
+
     public String getIdPago() {
         return idPago;
     }

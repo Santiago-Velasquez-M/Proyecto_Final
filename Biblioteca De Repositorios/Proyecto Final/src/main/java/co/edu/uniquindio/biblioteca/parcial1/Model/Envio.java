@@ -1,39 +1,52 @@
 package co.edu.uniquindio.biblioteca.parcial1.Model;
 
+import co.edu.uniquindio.biblioteca.parcial1.Enum.EstadoEnvio;
+
 import java.time.LocalDateTime;
 
 public class Envio {
 
-    private String id;
+    private String idEnvio;
     private Direccion origen;
     private Direccion destino;
     private double peso;
     private double volumen;
     private double costo;
-    private LocalDateTime fechaEntrega;
-    private Repartidor repartidor;
+    private EstadoEnvio estadoEnvio;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaEntregaEstimada;
     private Usuario usuario;
+    private Repartidor repartidor;
     private Pago pago;
+    private Tarifa tarifa;
 
-    public Envio(Direccion origen, Direccion destino, double peso, double volumen, double costo,
-                 LocalDateTime fechaEntrega, Repartidor repartidor, Usuario usuario, Pago pago) {
+
+    public Envio(String idEnvio, Direccion origen, Direccion destino, double peso,
+                 double volumen, double costo, EstadoEnvio estadoEnvio, LocalDateTime fechaCreacion,
+                 LocalDateTime fechaEntregaEstimada,
+                 Usuario usuario, Repartidor repartidor, Pago pago, Tarifa tarifa) {
+
+        this.idEnvio = idEnvio;
         this.origen = origen;
         this.destino = destino;
         this.peso = peso;
         this.volumen = volumen;
         this.costo = costo;
-        this.fechaEntrega = fechaEntrega;
-        this.repartidor = repartidor;
+        this.estadoEnvio = estadoEnvio;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaEntregaEstimada = fechaEntregaEstimada;
         this.usuario = usuario;
+        this.repartidor = repartidor;
         this.pago = pago;
+        this.tarifa = tarifa;
     }
 
-    public String getId() {
-        return id;
+    public String getIdEnvio() {
+        return idEnvio;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdEnvio(String idEnvio) {
+        this.idEnvio = idEnvio;
     }
 
     public Direccion getOrigen() {
@@ -76,20 +89,28 @@ public class Envio {
         this.costo = costo;
     }
 
-    public LocalDateTime getFechaEntrega() {
-        return fechaEntrega;
+    public EstadoEnvio getEstadoEnvio() {
+        return estadoEnvio;
     }
 
-    public void setFechaEntrega(LocalDateTime fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
+    public void setEstadoEnvio(EstadoEnvio estadoEnvio) {
+        this.estadoEnvio = estadoEnvio;
     }
 
-    public Repartidor getRepartidor() {
-        return repartidor;
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setRepartidor(Repartidor repartidor) {
-        this.repartidor = repartidor;
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public LocalDateTime getFechaEntregaEstimada() {
+        return fechaEntregaEstimada;
+    }
+
+    public void setFechaEntregaEstimada(LocalDateTime fechaEntregaEstimada) {
+        this.fechaEntregaEstimada = fechaEntregaEstimada;
     }
 
     public Usuario getUsuario() {
@@ -100,11 +121,27 @@ public class Envio {
         this.usuario = usuario;
     }
 
+    public Repartidor getRepartidor() {
+        return repartidor;
+    }
+
+    public void setRepartidor(Repartidor repartidor) {
+        this.repartidor = repartidor;
+    }
+
     public Pago getPago() {
         return pago;
     }
 
     public void setPago(Pago pago) {
         this.pago = pago;
+    }
+
+    public Tarifa getTarifa() {
+        return tarifa;
+    }
+
+    public void setTarifa(Tarifa tarifa) {
+        this.tarifa = tarifa;
     }
 }
