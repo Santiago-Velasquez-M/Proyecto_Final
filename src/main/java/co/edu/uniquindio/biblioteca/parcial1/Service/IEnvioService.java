@@ -1,5 +1,6 @@
 package co.edu.uniquindio.biblioteca.parcial1.Service;
 
+import co.edu.uniquindio.biblioteca.parcial1.Enum.EstadoEnvio;
 import co.edu.uniquindio.biblioteca.parcial1.Model.Envio;
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface IEnvioService {
     List<Envio> listarEnvios();
     List<Envio> listarPorEstado(String estado);
     void asignarRepartidor(String idEnvio, String idRepartidor);
+    void actualizarEstadoEnvio(Envio envio, EstadoEnvio nuevoEstado);
 }

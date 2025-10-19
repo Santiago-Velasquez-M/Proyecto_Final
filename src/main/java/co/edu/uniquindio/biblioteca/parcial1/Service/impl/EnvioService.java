@@ -1,5 +1,6 @@
 package co.edu.uniquindio.biblioteca.parcial1.Service.impl;
 
+import co.edu.uniquindio.biblioteca.parcial1.Enum.EstadoEnvio;
 import co.edu.uniquindio.biblioteca.parcial1.Model.Envio;
 import co.edu.uniquindio.biblioteca.parcial1.Singleton.DataStore;
 import co.edu.uniquindio.biblioteca.parcial1.Service.IEnvioService;
@@ -85,5 +86,25 @@ public class EnvioService implements IEnvioService {
                 return;
             }
         }
+    }
+
+    public void actualizarEstadoEnvio(Envio envio, EstadoEnvio nuevoEstado) {
+        if (envio == null || nuevoEstado == null) return;
+
+        envio.setEstadoEnvio(nuevoEstado);
+
+        String mensaje;
+        switch (nuevoEstado) {
+            case EN_RUTA:
+                mensaje = "Tu envío " + envio.getIdEnvio() + " ha salido y está en camino.";
+                break;
+            case ENTREGADO:
+                mensaje = "Tu envío " + envio.getIdEnvio() + " ha llegado a destino.";
+                break;
+            default:
+                mensaje = "El estado de tu envío " + envio.getIdEnvio() + " cambió a: " + nuevoEstado;
+        }
+
+        notificador.notificar(envio, mensaje);
     }
 }

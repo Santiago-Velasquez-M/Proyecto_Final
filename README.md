@@ -67,4 +67,4 @@ permitiendo enviar notificaciones automáticas al usuario sobre el estado de su 
 
 ### 👨‍💻 Autores
 Proyecto académico para **Programación II - Universidad del Quindío (2025-2)**.  
-Desarrollado por **Leandro Ortegón** y equipo.
+Desarrollado por **Leandro Ortegón** y **Santiago Velasquez**
