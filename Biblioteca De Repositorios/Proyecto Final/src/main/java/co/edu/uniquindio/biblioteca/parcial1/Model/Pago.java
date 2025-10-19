@@ -2,6 +2,7 @@ package co.edu.uniquindio.biblioteca.parcial1.Model;
 
 import co.edu.uniquindio.biblioteca.parcial1.Enum.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Pago {
 
@@ -69,6 +70,18 @@ public class Pago {
 
     public void setResultado(ResultadoPago resultado) {
         this.resultado = resultado;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return "Pago{" +
+                "idPago='" + idPago + '\'' +
+                ", monto=" + monto +
+                ", metodoPago=" + (metodoPago != null ? metodoPago.name() : "N/A") +
+                ", resultado=" + (resultado != null ? resultado.name() : "N/A") +
+                ", fechaPago=" + (fechaPago != null ? fechaPago.format(formato) : "N/A") +
+                '}';
     }
 
 }

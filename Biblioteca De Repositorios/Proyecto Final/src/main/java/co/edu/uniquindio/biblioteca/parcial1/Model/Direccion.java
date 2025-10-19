@@ -2,14 +2,12 @@ package co.edu.uniquindio.biblioteca.parcial1.Model;
 
 public class Direccion {
 
-
     private String idDireccion;
     private String nombre;
     private String direccion;
     private String ciudad;
     private String latitud;
     private String longitud;
-    private String coordenadas;
 
     public Direccion(String idDireccion, String nombre, String direccion, String ciudad
             , String latitud, String longitud) {
@@ -69,11 +67,16 @@ public class Direccion {
         this.longitud = longitud;
     }
 
-    public String getCoordenadas() {
-        return coordenadas;
-    }
+    @Override
+    public String toString() {
+        return "Direccion{" +
+                "idDireccion='" + idDireccion + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", latitud='" + (latitud != null ? latitud : "N/A") + '\'' +
+                ", longitud='" + (longitud != null ? longitud : "N/A") + '\'' +
+                '}';
+        }
 
-    public void setCoordenadas(String coordenadas) {
-        this.coordenadas = coordenadas;
     }
-}

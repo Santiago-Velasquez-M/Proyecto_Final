@@ -22,6 +22,10 @@ public class Usuario {
         this.metodosPago = (metodosPago != null) ? metodosPago : new ArrayList<>();
     }
 
+    public Usuario(String idUsuario, String nombreCompleto, String correo, String telefono) {
+        this(idUsuario, nombreCompleto, correo, telefono, new ArrayList<>(), new ArrayList<>());
+    }
+
     public String getIdUsuario() {
         return idUsuario;
     }

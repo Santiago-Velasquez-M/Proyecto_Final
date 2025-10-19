@@ -4,8 +4,9 @@ import co.edu.uniquindio.biblioteca.parcial1.Model.Direccion;
 
 public interface IDireccionService {
 
-    void crearDireccion(Direccion direccion);
-    Direccion buscarDireccionPorId(String id);
-    void actualizarDireccion(String id, Direccion nuevaDireccion);
-    void eliminarDireccion(String id);
+    boolean crearDireccion(Direccion direccion);
+    Direccion buscarDireccionPorId(String idDireccion);
+    boolean actualizarDireccion(String idDireccion, Direccion nuevaDireccion);
+    boolean eliminarDireccion(String idDireccion);
+
 }

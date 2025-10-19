@@ -1,11 +1,13 @@
 package co.edu.uniquindio.biblioteca.parcial1.Model;
 
-import co.edu.uniquindio.biblioteca.parcial1.Service.IEmpresaLogistica;
+import co.edu.uniquindio.biblioteca.parcial1.Service.IEmpresaLogisticaService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpresaLogistica implements IEmpresaLogistica {
+public class EmpresaLogistica {
 
+
+    private String nombre;
     private List<Direccion> direcciones = new ArrayList<>();
     private List<Envio> envios = new ArrayList<>();
     private List<Pago> pagos = new ArrayList<>();
@@ -16,14 +18,24 @@ public class EmpresaLogistica implements IEmpresaLogistica {
     public EmpresaLogistica() {
     }
 
-    public EmpresaLogistica(List<Direccion> direcciones, List<Envio> envios, List<Pago> pagos,
+    public EmpresaLogistica(String nombre, List<Direccion> direcciones, List<Envio> envios, List<Pago> pagos,
                             List<Repartidor> repartidores, List<Tarifa> tarifas, List<Usuario> usuarios) {
+
+        this.nombre = nombre;
         this.direcciones = direcciones;
         this.envios = envios;
         this.pagos = pagos;
         this.repartidores = repartidores;
         this.tarifas = tarifas;
         this.usuarios = usuarios;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public List<Direccion> getDirecciones() {

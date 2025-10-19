@@ -1,5 +1,7 @@
 package co.edu.uniquindio.biblioteca.parcial1.Model;
 
+import co.edu.uniquindio.biblioteca.parcial1.Enum.DisponibilidadRepartidor;
+
 public class Repartidor {
 
     private String idRepartidor;
@@ -9,12 +11,11 @@ public class Repartidor {
     private String vehiculo;
     private String placa;
     private String zonaCobertura;
+    private DisponibilidadRepartidor disponibilidadRepartidor;
 
-
-    private boolean disponible;
-
-    public Repartidor(String idRepartidor, String nombre,String documento , String telefono,
-                      String vehiculo, String placa,String zonaCobertura) {
+    public Repartidor(String idRepartidor, String nombre, String documento, String telefono,
+                      String vehiculo, String placa, String zonaCobertura,
+                      DisponibilidadRepartidor disponibilidadRepartidor) {
         this.idRepartidor = idRepartidor;
         this.nombre = nombre;
         this.documento = documento;
@@ -22,7 +23,7 @@ public class Repartidor {
         this.vehiculo = vehiculo;
         this.placa = placa;
         this.zonaCobertura = zonaCobertura;
-        this.disponible = true;
+        this.disponibilidadRepartidor = disponibilidadRepartidor;
     }
 
     public String getIdRepartidor() {
@@ -81,11 +82,25 @@ public class Repartidor {
         this.zonaCobertura = zonaCobertura;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public DisponibilidadRepartidor getDisponibilidadRepartidor() {
+        return disponibilidadRepartidor;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setDisponibilidadRepartidor(DisponibilidadRepartidor disponibilidadRepartidor) {
+        this.disponibilidadRepartidor = disponibilidadRepartidor;
+    }
+
+    @Override
+    public String toString() {
+        return "Repartidor{" +
+                "idRepartidor='" + idRepartidor + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", documento='" + documento + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", vehiculo='" + vehiculo + '\'' +
+                ", placa='" + placa + '\'' +
+                ", zonaCobertura='" + zonaCobertura + '\'' +
+                ", disponibilidad=" + (disponibilidadRepartidor != null ? disponibilidadRepartidor.name() : "N/A") +
+                '}';
     }
 }

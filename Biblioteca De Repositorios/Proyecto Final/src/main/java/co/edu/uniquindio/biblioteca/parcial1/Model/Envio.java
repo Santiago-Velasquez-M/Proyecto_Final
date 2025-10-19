@@ -1,7 +1,5 @@
 package co.edu.uniquindio.biblioteca.parcial1.Model;
-
 import co.edu.uniquindio.biblioteca.parcial1.Enum.EstadoEnvio;
-
 import java.time.LocalDateTime;
 
 public class Envio {
@@ -19,7 +17,6 @@ public class Envio {
     private Repartidor repartidor;
     private Pago pago;
     private Tarifa tarifa;
-
 
     public Envio(String idEnvio, Direccion origen, Direccion destino, double peso,
                  double volumen, double costo, EstadoEnvio estadoEnvio, LocalDateTime fechaCreacion,
@@ -143,5 +140,24 @@ public class Envio {
 
     public void setTarifa(Tarifa tarifa) {
         this.tarifa = tarifa;
+    }
+
+    @Override
+    public String toString() {
+        return "Envio{" +
+                "idEnvio='" + idEnvio + '\'' +
+                ", origen=" + (origen != null ? origen : "null") +
+                ", destino=" + (destino != null ? destino : "null") +
+                ", peso=" + peso +
+                ", volumen=" + volumen +
+                ", costo=" + costo +
+                ", estadoEnvio=" + (estadoEnvio != null ? estadoEnvio : "null") +
+                ", fechaCreacion=" + (fechaCreacion != null ? fechaCreacion : "null") +
+                ", fechaEntregaEstimada=" + (fechaEntregaEstimada != null ? fechaEntregaEstimada : "null") +
+                ", usuario=" + (usuario != null ? usuario.getNombre() : "null") +
+                ", repartidor=" + (repartidor != null ? repartidor.getNombre() : "null") +
+                ", pago=" + (pago != null ? pago.toString() : "null") +
+                ", tarifa=" + (tarifa != null ? tarifa.toString() : "null") +
+                '}';
     }
 }
