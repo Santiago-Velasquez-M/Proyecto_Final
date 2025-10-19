@@ -1,4 +1,4 @@
-package co.edu.uniquindio.biblioteca.parcial1.facade;
+package co.edu.uniquindio.biblioteca.parcial1.Facade;
 
 import co.edu.uniquindio.biblioteca.parcial1.Service.*;
 import co.edu.uniquindio.biblioteca.parcial1.Service.impl.*;

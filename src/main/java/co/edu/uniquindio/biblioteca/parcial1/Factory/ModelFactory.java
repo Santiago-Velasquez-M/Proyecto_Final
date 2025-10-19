@@ -7,7 +7,7 @@ import co.edu.uniquindio.biblioteca.parcial1.Enum.ResultadoPago;
 import co.edu.uniquindio.biblioteca.parcial1.Model.*;
 import co.edu.uniquindio.biblioteca.parcial1.Model.Builder.EnvioBuilder;
 import co.edu.uniquindio.biblioteca.parcial1.Service.IEmpresaLogisticaService;
-import co.edu.uniquindio.biblioteca.parcial1.facade.EmpresaLogisticaFacade;
+import co.edu.uniquindio.biblioteca.parcial1.Facade.EmpresaLogisticaFacade;
 
 import java.time.LocalDateTime;
 
