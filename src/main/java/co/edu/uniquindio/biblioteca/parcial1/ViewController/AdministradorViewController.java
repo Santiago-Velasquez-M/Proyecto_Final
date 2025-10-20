@@ -82,8 +82,6 @@ public class AdministradorViewController {
         }
     }
 
-    // ---------------------- UTILIDADES ----------------------
-
     private void mostrarMensaje(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Administrador");

@@ -54,6 +54,11 @@ public class PagoService implements IPagoService {
     }
 
     @Override
+    public List<Pago> listarPagos() {
+        return dataStore.getPagos();
+    }
+
+    @Override
     public boolean validarPago(Pago pago) {
         if (pago == null) return false;
         return pago.getMonto() > 0 && pago.getMetodoPago() != null;

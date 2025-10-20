@@ -54,6 +54,11 @@ public class TarifaService implements ITarifaService {
     }
 
     @Override
+    public List<Tarifa> listarTarifas() {
+        return dataStore.getTarifas();
+    }
+
+    @Override
     public double calcularCosto(double peso, double volumen, boolean prioridad) {
         if (!dataStore.getTarifas().isEmpty()) {
             Tarifa tarifa = dataStore.getTarifas().get(0);
