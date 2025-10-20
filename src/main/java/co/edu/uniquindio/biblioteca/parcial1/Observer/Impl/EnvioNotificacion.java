@@ -1,4 +1,4 @@
-// EnvioNotificacion.java
+
 package co.edu.uniquindio.biblioteca.parcial1.Observer.Impl;
 
 import co.edu.uniquindio.biblioteca.parcial1.Model.Envio;

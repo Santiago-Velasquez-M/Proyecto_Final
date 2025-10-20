@@ -18,7 +18,6 @@ public class NotificacionSms implements NotificacionObserver {
     }
 
     private void registrarMensaje(String mensaje) {
-        // Aquí puedes reemplazar por un logger o almacenamiento
         System.out.println(mensaje);
     }
 }
