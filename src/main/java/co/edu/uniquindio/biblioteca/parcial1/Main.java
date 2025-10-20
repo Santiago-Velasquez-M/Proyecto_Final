@@ -6,12 +6,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));
+        // Carga la vista principal del sistema (con el TabPane)
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/co/edu/uniquindio/biblioteca/parcial1/View/EmpresaLogisticaView.fxml")
+        );
+
         Scene scene = new Scene(loader.load());
-        stage.setTitle("Sistema de Envíos");
+        stage.setTitle("🚚 Sistema de Envíos - Empresa Logística");
         stage.setScene(scene);
+        stage.setResizable(false); // para mantener el tamaño fijo
         stage.show();
     }
 

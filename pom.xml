@@ -1,52 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<properties>
+    <!-- ⚙️ Configuración del compilador y JavaFX -->
+    <maven.compiler.source>25</maven.compiler.source>
+    <maven.compiler.target>25</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javafx.version>23.0.1</javafx.version>
+</properties>
 
-    <modelVersion>4.0.0</modelVersion>
+<dependencies>
+<!-- 🎨 JavaFX Controls -->
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-controls</artifactId>
+    <version>${javafx.version}</version>
+</dependency>
 
-    <groupId>co.edu.uniquindio.biblioteca.parcial1</groupId>
-    <artifactId>Proyecto_Final</artifactId>
-    <version>1.0-SNAPSHOT</version>
+<!-- 📦 JavaFX FXML -->
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-fxml</artifactId>
+    <version>${javafx.version}</version>
+</dependency>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javafx.version>25</javafx.version>
-    </properties>
+<!-- 🖼️ JavaFX Graphics -->
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-graphics</artifactId>
+    <version>${javafx.version}</version>
+</dependency>
+</dependencies>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>co.edu.uniquindio.biblioteca.parcial1.MainApp</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-</project>
+<build>
+<plugins>
+    <!-- 🚀 Plugin Maven para ejecutar JavaFX -->
+    <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.8</version>
+        <configuration>
+            <mainClass>co.edu.uniquindio.biblioteca.parcial1.Main</mainClass>
+        </configuration>
+    </plugin>
+</plugins>
+</build>

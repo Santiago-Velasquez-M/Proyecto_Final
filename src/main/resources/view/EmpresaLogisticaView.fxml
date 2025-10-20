@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Side?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.ViewController.EmpresaLogisticaViewController"
+            prefWidth="900.0" prefHeight="600.0">
+
+    <children>
+        <TabPane fx:id="tabPanePrincipal"
+                 side="LEFT"
+                 tabClosingPolicy="UNAVAILABLE"
+                 prefWidth="900.0"
+                 prefHeight="600.0"
+                 style="-fx-tab-min-width: 120px; -fx-tab-max-width: 120px; -fx-tab-min-height: 40px;">
+            <tabs>
+                <Tab fx:id="tabUsuarios" text="Usuarios"/>
+                <Tab fx:id="tabEnvios" text="Envíos"/>
+                <Tab fx:id="tabTarifas" text="Tarifas"/>
+            </tabs>
+        </TabPane>
+    </children>
+
+</AnchorPane>
