@@ -9,16 +9,16 @@ import java.util.List;
 
 public class AdministradorController {
 
-    private final EmpresaLogisticaFacade facade;
+    private final EmpresaLogisticaFacade empresaLogisticaFacade;
     private final Administrador administrador;
 
     public AdministradorController() {
-        this.facade = new EmpresaLogisticaFacade();
+        this.empresaLogisticaFacade = new EmpresaLogisticaFacade();
         this.administrador = new Administrador(
                 "A001",
                 "Administrador General",
                 "admin@logistica.com",
-                "0000000000",
+                "3128185660",
                 "admin123"
         );
     }
@@ -28,32 +28,32 @@ public class AdministradorController {
     }
 
     public List<Envio> listarTodosLosEnvios() {
-        return facade.getEnvioService().listarEnvios();
+        return empresaLogisticaFacade.getEnvioService().listarEnvios();
     }
 
     public void actualizarEstadoEnvio(Envio envio, EstadoEnvio nuevoEstado) {
         if (envio != null && nuevoEstado != null) {
-            facade.actualizarEstadoEnvio(envio, nuevoEstado);
+            empresaLogisticaFacade.getEnvioService().actualizarEstadoEnvio(envio, nuevoEstado);
         }
     }
 
     public List<Usuario> listarUsuarios() {
-        return facade.getUsuarioService().listarUsuarios();
+        return empresaLogisticaFacade.getUsuarioService().listarUsuarios();
     }
 
     public void eliminarUsuario(Usuario usuario) {
         if (usuario != null) {
-            facade.getUsuarioService().eliminarUsuario(usuario.getIdUsuario());
+            empresaLogisticaFacade.getUsuarioService().eliminarUsuario(usuario.getIdUsuario());
         }
     }
 
     public void crearEnvio(Envio envio) {
         if (envio != null) {
-            facade.getEnvioService().crearEnvio(envio);
+            empresaLogisticaFacade.getEnvioService().crearEnvio(envio);
         }
     }
 
     public EmpresaLogisticaFacade getFacade() {
-        return facade;
+        return empresaLogisticaFacade;
     }
 }
