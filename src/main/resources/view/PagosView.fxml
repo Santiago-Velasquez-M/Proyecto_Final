@@ -6,15 +6,15 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.PagoViewController"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.ViewController.PagosViewController"
             prefWidth="800" prefHeight="600">
 
-    <VBox spacing="10" alignment="CENTER">
+    <VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
         <padding>
-            <Insets top="15" right="15" bottom="15" left="15"/>
+            <Insets top="20" right="25" bottom="20" left="25"/>
         </padding>
 
-        <Label text="Gestión de Pagos" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+        <Label text="Gestión de Pagos" style="-fx-font-size: 22; -fx-font-weight: bold;" />
 
         <GridPane hgap="10" vgap="10">
             <padding>
@@ -28,25 +28,25 @@
             <TextField fx:id="txtMonto" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
             <Label text="Método de Pago:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="comboMetodo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <ComboBox fx:id="comboMetodoPago" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-            <Label text="Resultado:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="comboResultado" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Fecha de Pago:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dateFechaPago" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
         </GridPane>
 
-        <HBox spacing="10" alignment="CENTER">
-            <Button text="Agregar" onAction="#agregarPago"/>
+        <HBox spacing="12" alignment="CENTER">
+            <Button text="Registrar" onAction="#registrarPago"/>
+            <Button text="Actualizar" onAction="#actualizarPago"/>
             <Button text="Eliminar" onAction="#eliminarPago"/>
-            <Button text="Cargar" onAction="#cargarPagos"/>
+            <Button text="Limpiar" onAction="#limpiar"/>
         </HBox>
 
         <TableView fx:id="tablaPagos" prefWidth="700" prefHeight="300">
             <columns>
-                <TableColumn fx:id="colIdPago" text="ID Pago" prefWidth="120"/>
-                <TableColumn fx:id="colMonto" text="Monto" prefWidth="100"/>
+                <TableColumn fx:id="colIdPago" text="ID" prefWidth="100"/>
                 <TableColumn fx:id="colMetodo" text="Método" prefWidth="150"/>
-                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="180"/>
-                <TableColumn fx:id="colResultado" text="Resultado" prefWidth="120"/>
+                <TableColumn fx:id="colMonto" text="Monto" prefWidth="150"/>
+                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="200"/>
             </columns>
         </TableView>
     </VBox>

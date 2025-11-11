@@ -40,12 +40,13 @@
             <Button text="Cargar Lista" onAction="#cargarUsuarios" />
         </HBox>
 
-        <TableView fx:id="tblUsuarios" prefHeight="300" prefWidth="650">
+        <TableView fx:id="tblUsuarios" prefWidth="700" prefHeight="300">
             <columns>
                 <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
                 <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
                 <TableColumn fx:id="colCorreo" text="Correo" prefWidth="150"/>
                 <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="150"/>
+                <TableColumn fx:id="colDocumento" text="Documento" prefWidth="150"/>
             </columns>
         </TableView>
     </VBox>

@@ -8,7 +8,7 @@ public class NotificacionSms implements NotificacionObserver {
     @Override
     public void actualizar(Envio envio, String mensaje) {
         String nombreUsuario = (envio.getUsuario() != null)
-                ? envio.getUsuario().getNombre()
+                ? envio.getUsuario().getNombreCompleto()
                 : Constantes.MENSAJE_USUARIO_DESCONOCIDO;
 
         String mensajeFinal = String.format("%s A %s: %s",

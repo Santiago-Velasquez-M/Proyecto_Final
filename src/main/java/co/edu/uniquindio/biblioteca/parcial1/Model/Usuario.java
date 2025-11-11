@@ -9,72 +9,45 @@ public class Usuario {
     private String nombreCompleto;
     private String correo;
     private String telefono;
+    private String documento;
     private ArrayList<Direccion> direcciones;
     private ArrayList<MetodoPago> metodosPago;
 
-    public Usuario(String idUsuario, String nombreCompleto, String correo, String telefono,
-                   ArrayList<Direccion> direcciones, ArrayList<MetodoPago> metodosPago) {
+    // ✅ Constructor principal (el que sí vamos a usar)
+    public Usuario(String idUsuario, String nombreCompleto, String correo, String telefono, String documento) {
         this.idUsuario = idUsuario;
         this.nombreCompleto = nombreCompleto;
         this.correo = correo;
         this.telefono = telefono;
-        this.direcciones = (direcciones != null) ? direcciones : new ArrayList<>();
-        this.metodosPago = (metodosPago != null) ? metodosPago : new ArrayList<>();
+        this.documento = documento;
+        this.direcciones = new ArrayList<>();
+        this.metodosPago = new ArrayList<>();
     }
 
+    // ✅ Constructor alterno (si en algún lado lo usas sin documento)
     public Usuario(String idUsuario, String nombreCompleto, String correo, String telefono) {
-        this(idUsuario, nombreCompleto, correo, telefono, new ArrayList<>(), new ArrayList<>());
+        this(idUsuario, nombreCompleto, correo, telefono, ""); // documento vacío por defecto
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
-    }
+    // getters y setters...
+    public String getIdUsuario() { return idUsuario; }
+    public void setIdUsuario(String idUsuario) { this.idUsuario = idUsuario; }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+    public String getNombreCompleto() { return nombreCompleto; }
+    public void setNombreCompleto(String nombreCompleto) { this.nombreCompleto = nombreCompleto; }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
+    public String getCorreo() { return correo; }
+    public void setCorreo(String correo) { this.correo = correo; }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
 
-    public String getCorreo() {
-        return correo;
-    }
+    public String getDocumento() { return documento; }
+    public void setDocumento(String documento) { this.documento = documento; }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
+    public ArrayList<Direccion> getDirecciones() { return direcciones; }
+    public void setDirecciones(ArrayList<Direccion> direcciones) { this.direcciones = direcciones; }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public ArrayList<Direccion> getDirecciones() {
-        return direcciones;
-    }
-
-    public void setDirecciones(ArrayList<Direccion> direcciones) {
-        this.direcciones = direcciones;
-    }
-
-    public ArrayList<MetodoPago> getMetodosPago() {
-        return metodosPago;
-    }
-
-    public void setMetodosPago(ArrayList<MetodoPago> metodosPago) {
-        this.metodosPago = metodosPago;
-    }
-
-    public String getNombre() {
-        return nombreCompleto;
-    }
+    public ArrayList<MetodoPago> getMetodosPago() { return metodosPago; }
+    public void setMetodosPago(ArrayList<MetodoPago> metodosPago) { this.metodosPago = metodosPago; }
 }

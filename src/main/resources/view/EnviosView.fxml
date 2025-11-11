@@ -6,17 +6,23 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.EnvioViewController"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.ViewController.EnvioViewController"
             prefWidth="850" prefHeight="600">
 
-    <VBox spacing="15" alignment="CENTER">
+    <VBox spacing="15" alignment="CENTER"
+          AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+
         <padding>
             <Insets top="20" right="25" bottom="20" left="25"/>
         </padding>
 
-        <Label text="Gestión de Envíos" style="-fx-font-size: 22; -fx-font-weight: bold;" />
+        <!-- ===== TÍTULO ===== -->
+        <Label text="Gestión de Envíos"
+               style="-fx-font-size: 22; -fx-font-weight: bold;"/>
 
-        <GridPane hgap="10" vgap="10">
+        <!-- ===== FORMULARIO ===== -->
+        <GridPane hgap="10" vgap="10" alignment="CENTER">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
@@ -39,20 +45,22 @@
             <Label text="Costo:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
             <TextField fx:id="txtCosto" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-            <Label text="Repartidor:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="comboRepartidor" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="200"/>
-
-            <Label text="Usuario:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="comboUsuario" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="200"/>
+            <Label text="Estado:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboEstado" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="200"/>
         </GridPane>
 
+        <!-- ===== BOTONES ===== -->
         <HBox spacing="12" alignment="CENTER">
-            <Button text="Agregar" onAction="#agregarEnvio" />
-            <Button text="Actualizar" onAction="#actualizarEnvio" />
-            <Button text="Eliminar" onAction="#eliminarEnvio" />
-            <Button text="Cargar Lista" onAction="#cargarEnvios" />
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Agregar" onAction="#registrarEnvio"/>
+            <Button text="Actualizar" onAction="#actualizarEnvio"/>
+            <Button text="Eliminar" onAction="#eliminarEnvio"/>
+            <Button text="Limpiar" onAction="#limpiar"/>
         </HBox>
 
+        <!-- ===== TABLA DE ENVÍOS ===== -->
         <TableView fx:id="tablaEnvios" prefHeight="300" prefWidth="800">
             <columns>
                 <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
@@ -61,8 +69,8 @@
                 <TableColumn fx:id="colPeso" text="Peso (kg)" prefWidth="80"/>
                 <TableColumn fx:id="colVolumen" text="Volumen (m³)" prefWidth="100"/>
                 <TableColumn fx:id="colCosto" text="Costo ($)" prefWidth="90"/>
-                <TableColumn fx:id="colRepartidor" text="Repartidor" prefWidth="120"/>
-                <TableColumn fx:id="colUsuario" text="Usuario" prefWidth="120"/>
+                <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+                <TableColumn fx:id="colFecha" text="Fecha Creación" prefWidth="140"/>
             </columns>
         </TableView>
     </VBox>

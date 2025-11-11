@@ -1,7 +1,7 @@
 package co.edu.uniquindio.biblioteca.parcial1.ViewController;
 
 import co.edu.uniquindio.biblioteca.parcial1.Controller.UsuarioController;
-import co.edu.uniquindio.biblioteca.parcial1.Model.Usuario;
+import co.edu.uniquindio.biblioteca.parcial1.Dto.UsuarioDto;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,88 +13,119 @@ public class UsuariosViewController {
     @FXML private TextField txtNombre;
     @FXML private TextField txtCorreo;
     @FXML private TextField txtTelefono;
-
-    @FXML private TableView<Usuario> tblUsuarios;
-    @FXML private TableColumn<Usuario, String> colId;
-    @FXML private TableColumn<Usuario, String> colNombre;
-    @FXML private TableColumn<Usuario, String> colCorreo;
-    @FXML private TableColumn<Usuario, String> colTelefono;
+    @FXML private TextField txtDocumento;
+    @FXML private TableView<UsuarioDto> tblUsuarios;
+    @FXML private TableColumn<UsuarioDto, String> colId;
+    @FXML private TableColumn<UsuarioDto, String> colNombre;
+    @FXML private TableColumn<UsuarioDto, String> colCorreo;
+    @FXML private TableColumn<UsuarioDto, String> colTelefono;
+    @FXML private TableColumn<UsuarioDto, String> colDocumento;
 
     private final UsuarioController usuarioController = new UsuarioController();
 
     @FXML
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
         colCorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
         colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-        cargarUsuarios();
+        colDocumento.setCellValueFactory(new PropertyValueFactory<>("documento"));
+
+        cargarTabla();
+
+        tblUsuarios.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, sel) -> {
+            if (sel != null) {
+                txtId.setText(sel.getIdUsuario());
+                txtNombre.setText(sel.getNombreCompleto());
+                txtCorreo.setText(sel.getCorreo());
+                txtTelefono.setText(sel.getTelefono());
+                txtDocumento.setText(sel.getDocumento());
+            }
+        });
+    }
+
+    private void cargarTabla() {
+        tblUsuarios.setItems(FXCollections.observableArrayList(usuarioController.listarUsuariosDto()));
     }
 
     @FXML
     private void cargarUsuarios() {
-        tblUsuarios.setItems(FXCollections.observableArrayList(usuarioController.listarUsuarios()));
+        cargarTabla();
     }
 
     @FXML
     private void agregarUsuario() {
-        Usuario nuevo = new Usuario(
+        if (!validar()) return;
+
+        UsuarioDto nuevo = new UsuarioDto(
                 txtId.getText(),
                 txtNombre.getText(),
                 txtCorreo.getText(),
-                txtTelefono.getText()
+                txtTelefono.getText(),
+                txtDocumento.getText()
         );
-        usuarioController.crearUsuario(nuevo);
-        mostrarAlerta("Usuario agregado correctamente.");
-        limpiarCampos();
-        cargarUsuarios();
+
+        usuarioController.crearUsuarioDto(nuevo);
+        info("Usuario agregado correctamente");
+        limpiar();
+        cargarTabla();
     }
 
     @FXML
     private void actualizarUsuario() {
-        Usuario seleccionado = tblUsuarios.getSelectionModel().getSelectedItem();
-        if (seleccionado == null) {
-            mostrarAlerta("Seleccione un usuario para actualizar.");
-            return;
-        }
+        UsuarioDto sel = tblUsuarios.getSelectionModel().getSelectedItem();
+        if (sel == null) { error("Selecciona un usuario"); return; }
+        if (!validar()) return;
 
-        Usuario actualizado = new Usuario(
+        UsuarioDto actualizado = new UsuarioDto(
                 txtId.getText(),
                 txtNombre.getText(),
                 txtCorreo.getText(),
-                txtTelefono.getText()
+                txtTelefono.getText(),
+                txtDocumento.getText()
         );
-        usuarioController.actualizarUsuario(seleccionado.getIdUsuario(), actualizado);
-        mostrarAlerta("Usuario actualizado correctamente.");
-        limpiarCampos();
-        cargarUsuarios();
+
+        usuarioController.actualizarUsuarioDto(sel.getIdUsuario(), actualizado);
+        info("Usuario actualizado");
+        limpiar();
+        cargarTabla();
     }
 
     @FXML
     private void eliminarUsuario() {
-        Usuario seleccionado = tblUsuarios.getSelectionModel().getSelectedItem();
-        if (seleccionado == null) {
-            mostrarAlerta("Seleccione un usuario para eliminar.");
-            return;
-        }
+        UsuarioDto sel = tblUsuarios.getSelectionModel().getSelectedItem();
+        if (sel == null) { error("Selecciona un usuario"); return; }
 
-        usuarioController.eliminarUsuario(seleccionado.getIdUsuario());
-        mostrarAlerta("Usuario eliminado correctamente.");
-        cargarUsuarios();
+        usuarioController.eliminarUsuarioDto(sel.getIdUsuario());
+        info("Usuario eliminado");
+        limpiar();
+        cargarTabla();
     }
 
-    private void limpiarCampos() {
+    @FXML
+    private void limpiar() {
         txtId.clear();
         txtNombre.clear();
         txtCorreo.clear();
         txtTelefono.clear();
+        txtDocumento.clear();
+        tblUsuarios.getSelectionModel().clearSelection();
     }
 
-    private void mostrarAlerta(String mensaje) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Gestión de Usuarios");
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensaje);
-        alerta.showAndWait();
+    private boolean validar() {
+        if (txtId.getText().isBlank() || txtNombre.getText().isBlank()) {
+            error("ID y Nombre son obligatorios");
+            return false;
+        }
+        return true;
+    }
+
+    private void info(String m){ alerta(Alert.AlertType.INFORMATION, m); }
+    private void error(String m){ alerta(Alert.AlertType.ERROR, m); }
+    private void alerta(Alert.AlertType t, String m){
+        Alert a = new Alert(t);
+        a.setHeaderText(null);
+        a.setContentText(m);
+        a.showAndWait();
     }
 }

@@ -57,4 +57,21 @@ public class UsuarioService implements IUsuarioService {
     public List<Usuario> listarUsuarios() {
         return dataStore.getUsuarios();
     }
+
+    public Usuario buscarPorCorreoODocumento(String input) {
+        if (input == null) {
+            return null;
+        }
+
+        List<Usuario> lista = dataStore.getUsuarios();
+        for (Usuario u : lista) {
+            if (u.getCorreo() != null && u.getCorreo().equalsIgnoreCase(input)) {
+                return u;
+            }
+            if (u.getDocumento() != null && u.getDocumento().equalsIgnoreCase(input)) {
+                return u;
+            }
+        }
+        return null;
+    }
 }

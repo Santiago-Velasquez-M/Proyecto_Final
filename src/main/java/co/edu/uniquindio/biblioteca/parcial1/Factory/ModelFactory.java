@@ -7,6 +7,7 @@ import co.edu.uniquindio.biblioteca.parcial1.Enum.ResultadoPago;
 import co.edu.uniquindio.biblioteca.parcial1.Model.*;
 import co.edu.uniquindio.biblioteca.parcial1.Model.Builder.EnvioBuilder;
 import co.edu.uniquindio.biblioteca.parcial1.Service.IEmpresaLogisticaService;
+import co.edu.uniquindio.biblioteca.parcial1.Service.IUsuarioService;
 import co.edu.uniquindio.biblioteca.parcial1.Facade.EmpresaLogisticaFacade;
 
 import java.time.LocalDateTime;
@@ -37,13 +38,19 @@ public class ModelFactory {
         return empresaLogistica;
     }
 
+    public IUsuarioService getUsuarioService() {
+        return empresaLogisticaFacade.getUsuarioService();
+    }
+
+
     private void inicializarDatos() {
 
         empresaLogistica = new EmpresaLogistica();
         empresaLogistica.setNombre("Logística Express S.A.S");
 
-        Usuario usuario1 = new Usuario("U001", "Juan Pérez", "juan@correo.com", "1234");
-        Usuario usuario2 = new Usuario("U002", "María Gómez", "maria@correo.com", "abcd");
+        Usuario usuario1 = new Usuario("U001", "Juan Pérez", "juan@example.com", "3001234567", "1234567890");
+        Usuario usuario2 = new Usuario("U002", "María Gómez", "maria@correo.com", "abcd", "234567891");
+
         empresaLogisticaFacade.getUsuarioService().crearUsuario(usuario1);
         empresaLogisticaFacade.getUsuarioService().crearUsuario(usuario2);
 
@@ -61,10 +68,11 @@ public class ModelFactory {
         empresaLogisticaFacade.getTarifaService().crearTarifa(tarifaLocal);
         empresaLogisticaFacade.getTarifaService().crearTarifa(tarifaNacional);
 
-        Direccion dirOrigen1 = new Direccion("D001", "Cali", "Cra 12 #45-32", "", "", "");
-        Direccion dirDestino1 = new Direccion("D002", "Bogotá", "Av 68 #10-20", "", "", "");
-        Direccion dirOrigen2 = new Direccion("D003", "Medellín", "Cl 70 #52-30", "", "", "");
-        Direccion dirDestino2 = new Direccion("D004", "Barranquilla", "Cra 40 #30-15", "", "", "");
+        Direccion dirOrigen1 = new Direccion("D001", "Bodega Central", "Cra 12 #45-32", "Cali", "3.4372", "-76.5225");
+        Direccion dirDestino1 = new Direccion("D002", "Cliente Bogotá", "Av 68 #10-20", "Bogotá", "4.6097", "-74.0817");
+        Direccion dirOrigen2 = new Direccion("D003", "Sucursal Medellín", "Cl 70 #52-30", "Medellín", "6.2442", "-75.5812");
+        Direccion dirDestino2 = new Direccion("D004", "Cliente Barranquilla", "Cra 40 #30-15", "Barranquilla", "10.9639", "-74.7964");
+
 
         empresaLogisticaFacade.getDireccionService().crearDireccion(dirOrigen1);
         empresaLogisticaFacade.getDireccionService().crearDireccion(dirDestino1);

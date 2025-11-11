@@ -2,23 +2,26 @@ package co.edu.uniquindio.biblioteca.parcial1;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        // Carga la vista principal del sistema (con el TabPane)
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/co/edu/uniquindio/biblioteca/parcial1/View/EmpresaLogisticaView.fxml")
-        );
+    public void start(Stage primaryStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EmpresaLogisticaView.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("Empresa Logística - Panel Principal");
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(true);
+            primaryStage.show();
 
-        Scene scene = new Scene(loader.load());
-        stage.setTitle("🚚 Sistema de Envíos - Empresa Logística");
-        stage.setScene(scene);
-        stage.setResizable(false); // para mantener el tamaño fijo
-        stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

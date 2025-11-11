@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Side?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -11,15 +10,56 @@
 
     <children>
         <TabPane fx:id="tabPanePrincipal"
-                 side="LEFT"
+                 side="TOP"
                  tabClosingPolicy="UNAVAILABLE"
-                 prefWidth="900.0"
-                 prefHeight="600.0"
+                 AnchorPane.topAnchor="0.0"
+                 AnchorPane.leftAnchor="0.0"
+                 AnchorPane.rightAnchor="0.0"
+                 AnchorPane.bottomAnchor="0.0"
                  style="-fx-tab-min-width: 120px; -fx-tab-max-width: 120px; -fx-tab-min-height: 40px;">
             <tabs>
-                <Tab fx:id="tabUsuarios" text="Usuarios"/>
-                <Tab fx:id="tabEnvios" text="Envíos"/>
-                <Tab fx:id="tabTarifas" text="Tarifas"/>
+                <!-- === Usuarios === -->
+                <Tab fx:id="tabUsuarios" text="Usuarios">
+                    <content>
+                        <fx:include source="UsuariosView.fxml" />
+                    </content>
+                </Tab>
+
+                <!-- === Envíos === -->
+                <Tab fx:id="tabEnvios" text="Envíos">
+                    <content>
+                        <fx:include source="EnviosView.fxml" />
+                    </content>
+                </Tab>
+
+                <!-- === Repartidores === -->
+                <Tab fx:id="tabRepartidores" text="Repartidores">
+                    <content>
+                        <fx:include source="RepartidoresView.fxml" />
+                    </content>
+                </Tab>
+
+                <!-- === Pagos === -->
+                <Tab fx:id="tabPagos" text="Pagos">
+                    <content>
+                        <fx:include source="PagosView.fxml" />
+                    </content>
+                </Tab>
+
+                <!-- === Tarifas === -->
+                <Tab fx:id="tabTarifas" text="Tarifas">
+                    <content>
+                        <fx:include source="TarifaView.fxml" />
+                    </content>
+                </Tab>
+
+                <!-- === Direcciones === -->
+                <Tab fx:id="tabDirecciones" text="Direcciones">
+                    <content>
+                        <fx:include source="DireccionView.fxml" />
+                    </content>
+                </Tab>
+
             </tabs>
         </TabPane>
     </children>

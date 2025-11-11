@@ -9,6 +9,11 @@ public class Administrador extends Usuario {
         this.clave = clave;
     }
 
+    public Administrador() {
+        super("", "", "", "");
+        this.clave = "";
+    }
+
     public String getClave() {
         return clave;
     }
@@ -21,8 +26,13 @@ public class Administrador extends Usuario {
     public String toString() {
         return "Administrador{" +
                 "idUsuario='" + getIdUsuario() + '\'' +
-                ", nombre='" + getNombre() + '\'' +
+                ", nombre='" + getNombreCompleto() + '\'' +
                 ", correo='" + getCorreo() + '\'' +
+                ", telefono='" + getTelefono() + '\'' +
                 '}';
+    }
+
+    public boolean validarClave(String claveIngresada) {
+        return clave != null && clave.equals(claveIngresada);
     }
 }

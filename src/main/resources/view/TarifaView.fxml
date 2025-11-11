@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.ViewController.TarifaViewController">
+
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Gestión de Tarifas"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <GridPane hgap="10" vgap="10" alignment="CENTER">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT"/>
+                    <ColumnConstraints halignment="LEFT"/>
+                </columnConstraints>
+
+                <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtId" promptText="Ej: T001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Costo Base:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtBase" promptText="Ej: 1000" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Por Peso:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtPorPeso" promptText="Ej: 500" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Por Volumen:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtPorVolumen" promptText="Ej: 2000" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Distancia:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtRecargo" promptText="Ej: 250" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Prioridad:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbPrioridad" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <HBox spacing="15" alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Button text="Agregar" onAction="#agregar"/>
+                <Button text="Actualizar" onAction="#actualizar"/>
+                <Button text="Eliminar" onAction="#eliminar"/>
+                <Button text="Limpiar" onAction="#limpiar"/>
+            </HBox>
+
+            <TableView fx:id="tblTarifas" prefWidth="700" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+                    <TableColumn fx:id="colBase" text="Base" prefWidth="100"/>
+                    <TableColumn fx:id="colPorPeso" text="Peso" prefWidth="100"/>
+                    <TableColumn fx:id="colPorVolumen" text="Volumen" prefWidth="100"/>
+                    <TableColumn fx:id="colRecargo" text="Distancia" prefWidth="100"/>
+                    <TableColumn fx:id="colDescuento" text="Prioridad (Costo)" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>

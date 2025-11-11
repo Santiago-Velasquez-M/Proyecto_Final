@@ -1,10 +1,11 @@
 package co.edu.uniquindio.biblioteca.parcial1.Service.impl;
 
 import co.edu.uniquindio.biblioteca.parcial1.Model.Tarifa;
-import co.edu.uniquindio.biblioteca.parcial1.Singleton.DataStore;
 import co.edu.uniquindio.biblioteca.parcial1.Service.ITarifaService;
+import co.edu.uniquindio.biblioteca.parcial1.Singleton.DataStore;
 
 import java.util.List;
+
 
 public class TarifaService implements ITarifaService {
 
@@ -12,16 +13,15 @@ public class TarifaService implements ITarifaService {
 
     @Override
     public void crearTarifa(Tarifa tarifa) {
-        if (tarifa != null) {
+        if (tarifa != null && buscarTarifaPorId(tarifa.getIdTarifa()) == null) {
             dataStore.getTarifas().add(tarifa);
         }
     }
 
     @Override
     public Tarifa buscarTarifaPorId(String id) {
-        List<Tarifa> lista = dataStore.getTarifas();
-        for (int i = 0; i < lista.size(); i++) {
-            Tarifa tarifa = lista.get(i);
+        if (id == null || id.isBlank()) return null;
+        for (Tarifa tarifa : dataStore.getTarifas()) {
             if (tarifa.getIdTarifa().equalsIgnoreCase(id)) {
                 return tarifa;
             }
@@ -31,10 +31,12 @@ public class TarifaService implements ITarifaService {
 
     @Override
     public void actualizarTarifa(String id, Tarifa nuevaTarifa) {
+        if (id == null || nuevaTarifa == null) return;
+
         List<Tarifa> lista = dataStore.getTarifas();
         for (int i = 0; i < lista.size(); i++) {
-            Tarifa tarifa = lista.get(i);
-            if (tarifa.getIdTarifa().equalsIgnoreCase(id)) {
+            Tarifa actual = lista.get(i);
+            if (actual.getIdTarifa().equalsIgnoreCase(id)) {
                 lista.set(i, nuevaTarifa);
                 return;
             }
@@ -43,14 +45,11 @@ public class TarifaService implements ITarifaService {
 
     @Override
     public void eliminarTarifa(String id) {
-        List<Tarifa> lista = dataStore.getTarifas();
-        for (int i = 0; i < lista.size(); i++) {
-            Tarifa tarifa = lista.get(i);
-            if (tarifa.getIdTarifa().equalsIgnoreCase(id)) {
-                lista.remove(i);
-                return;
-            }
-        }
+        if (id == null || id.isBlank()) return;
+
+        dataStore.getTarifas().removeIf(
+                tarifa -> tarifa.getIdTarifa().equalsIgnoreCase(id)
+        );
     }
 
     @Override
@@ -64,8 +63,11 @@ public class TarifaService implements ITarifaService {
             Tarifa tarifa = dataStore.getTarifas().get(0);
             return tarifa.calcularCosto(peso, volumen, prioridad);
         }
+
         double base = (peso * 1000) + (volumen * 500);
-        if (prioridad) base *= 1.25;
+        if (prioridad) {
+            base *= 1.25;
+        }
         return base;
     }
 }

@@ -7,8 +7,7 @@ public class Tarifa {
     private double costoPeso;
     private double costoVolumen;
     private double costoPrioridad;
-    private double CostoDistancia;
-
+    private double costoDistancia;
 
     public Tarifa(String idTarifa, double costoBase, double costoPeso,
                   double costoVolumen, double costoPrioridad, double costoDistancia) {
@@ -17,14 +16,16 @@ public class Tarifa {
         this.costoPeso = costoPeso;
         this.costoVolumen = costoVolumen;
         this.costoPrioridad = costoPrioridad;
-        CostoDistancia = costoDistancia;
+        this.costoDistancia = costoDistancia;
     }
+
 
     public double calcularCosto(double peso, double volumen, boolean prioridad) {
         double total = costoBase + (peso * costoPeso) + (volumen * costoVolumen);
         if (prioridad) total += costoPrioridad;
         return total;
     }
+
 
     public String getIdTarifa() {
         return idTarifa;
@@ -67,10 +68,18 @@ public class Tarifa {
     }
 
     public double getCostoDistancia() {
-        return CostoDistancia;
+        return costoDistancia;
     }
 
     public void setCostoDistancia(double costoDistancia) {
-        CostoDistancia = costoDistancia;
+        this.costoDistancia = costoDistancia;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%s - Base: %.2f | Peso: %.2f | Volumen: %.2f | Prioridad: %.2f | Distancia: %.2f",
+                idTarifa, costoBase, costoPeso, costoVolumen, costoPrioridad, costoDistancia
+        );
     }
 }

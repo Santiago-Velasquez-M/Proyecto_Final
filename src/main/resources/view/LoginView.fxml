@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.LoginController">
+
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <Label text="Iniciar sesión" style="-fx-font-size: 18;" />
+
+            <TextField fx:id="txtCorreoDocumento" promptText="Correo o documento" />
+            <PasswordField fx:id="txtContrasena" promptText="Contraseña (puede ser simulada)" />
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Ingresar" onAction="#onIngresar" />
+            </HBox>
+
+            <Label fx:id="lblMensaje" />
+        </VBox>
+    </center>
+
+</BorderPane>

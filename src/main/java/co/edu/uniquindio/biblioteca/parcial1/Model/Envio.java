@@ -37,6 +37,9 @@ public class Envio {
         this.pago = pago;
         this.tarifa = tarifa;
     }
+    public Envio() {
+    }
+
 
     public String getIdEnvio() {
         return idEnvio;
@@ -154,7 +157,7 @@ public class Envio {
                 ", estadoEnvio=" + (estadoEnvio != null ? estadoEnvio : "null") +
                 ", fechaCreacion=" + (fechaCreacion != null ? fechaCreacion : "null") +
                 ", fechaEntregaEstimada=" + (fechaEntregaEstimada != null ? fechaEntregaEstimada : "null") +
-                ", usuario=" + (usuario != null ? usuario.getNombre() : "null") +
+                ", usuario=" + (usuario != null ? usuario.getNombreCompleto() : "null") +
                 ", repartidor=" + (repartidor != null ? repartidor.getNombre() : "null") +
                 ", pago=" + (pago != null ? pago.toString() : "null") +
                 ", tarifa=" + (tarifa != null ? tarifa.toString() : "null") +

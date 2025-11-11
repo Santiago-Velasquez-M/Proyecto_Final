@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="co.edu.uniquindio.biblioteca.parcial1.ViewController.AdministradorViewController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefWidth="900" prefHeight="600">
+
+    <VBox spacing="15" alignment="CENTER"
+          AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+          AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+        <!-- Encabezado -->
+        <Label text="Panel del Administrador" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+        <Label fx:id="lblNombreAdmin" text="Administrador" style="-fx-font-size: 16;"/>
+
+        <!-- Sección de Envíos -->
+        <TitledPane text="Gestión de Envíos" expanded="true">
+            <VBox spacing="10" alignment="CENTER" padding="10">
+                <HBox spacing="10" alignment="CENTER">
+                    <Button fx:id="btnMarcarEnRuta" text="Marcar En Ruta" onAction="#marcarEnRuta"/>
+                    <Button fx:id="btnMarcarEntregado" text="Marcar Entregado" onAction="#marcarEntregado"/>
+                    <Button text="Recargar Envíos" onAction="#cargarEnvios"/>
+                </HBox>
+
+                <TableView fx:id="tablaEnvios" prefHeight="200" prefWidth="850">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID Envío" prefWidth="100"/>
+                        <TableColumn fx:id="colOrigen" text="Origen" prefWidth="120"/>
+                        <TableColumn fx:id="colDestino" text="Destino" prefWidth="120"/>
+                        <TableColumn fx:id="colPeso" text="Peso (kg)" prefWidth="80"/>
+                        <TableColumn fx:id="colCosto" text="Costo ($)" prefWidth="100"/>
+                        <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+                        <TableColumn fx:id="colFecha" text="Fecha" prefWidth="180"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </TitledPane>
+
+        <!-- Sección de Usuarios -->
+        <TitledPane text="Gestión de Usuarios" expanded="true">
+            <VBox spacing="10" alignment="CENTER" padding="10">
+                <HBox spacing="10" alignment="CENTER">
+                    <Button fx:id="btnEliminarUsuario" text="Eliminar Usuario" onAction="#eliminarUsuario"/>
+                    <Button text="Recargar Usuarios" onAction="#cargarUsuarios"/>
+                </HBox>
+
+                <TableView fx:id="tablaUsuarios" prefHeight="200" prefWidth="850">
+                    <columns>
+                        <TableColumn fx:id="colIdUsuario" text="ID" prefWidth="100"/>
+                        <TableColumn fx:id="colNombreUsuario" text="Nombre" prefWidth="180"/>
+                        <TableColumn fx:id="colCorreoUsuario" text="Correo" prefWidth="180"/>
+                        <TableColumn fx:id="colTelefonoUsuario" text="Teléfono" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </TitledPane>
+
+    </VBox>
 </AnchorPane>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.UsuarioPortalController">
+
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" padding="10">
+            <Label text="Bienvenido:" style="-fx-font-size: 16;" />
+            <Label fx:id="lblNombreUsuario" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" alignment="CENTER" padding="10">
+            <Label text="Historial de envíos" style="-fx-font-size: 14;" />
+
+            <TableView fx:id="tablaEnvios" prefHeight="300" prefWidth="600">
+                <columns>
+                    <TableColumn fx:id="colIdEnvio" text="ID Envío" prefWidth="100"/>
+                    <TableColumn fx:id="colEstadoEnvio" text="Estado" prefWidth="150"/>
+                    <TableColumn fx:id="colFecha" text="Fecha de Creación" prefWidth="200"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>

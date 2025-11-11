@@ -68,4 +68,9 @@ public class RepartidorService implements IRepartidorService {
         }
         return resultado;
     }
+    @Override
+    public List<Repartidor> listarRepartidores() {
+        return dataStore.getRepartidores();
+    }
+
 }
