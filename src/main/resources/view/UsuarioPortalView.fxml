@@ -2,19 +2,27 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="co.edu.uniquindio.biblioteca.parcial1.Controller.UsuarioPortalController">
 
     <top>
-        <HBox spacing="10" alignment="CENTER_LEFT" padding="10">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
             <Label text="Bienvenido:" style="-fx-font-size: 16;" />
             <Label fx:id="lblNombreUsuario" style="-fx-font-size: 16; -fx-font-weight: bold;" />
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="10" alignment="CENTER" padding="10">
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
             <Label text="Historial de envíos" style="-fx-font-size: 14;" />
 
             <TableView fx:id="tablaEnvios" prefHeight="300" prefWidth="600">
@@ -24,6 +32,7 @@
                     <TableColumn fx:id="colFecha" text="Fecha de Creación" prefWidth="200"/>
                 </columns>
             </TableView>
+
         </VBox>
     </center>
 
