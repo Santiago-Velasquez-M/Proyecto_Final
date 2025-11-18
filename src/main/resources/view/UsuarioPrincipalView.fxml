@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.ViewController.UsuarioPrincipalViewController"
+            prefWidth="900" prefHeight="600">
+
+    <children>
+
+        <VBox spacing="0" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+              AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+
+            <!-- HEADER -->
+            <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color: #1E88E5; -fx-padding: 15;">
+                <Label text="Panel del Usuario"
+                       style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;" />
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <VBox alignment="CENTER_RIGHT">
+                    <Label fx:id="lblNombre" style="-fx-text-fill: white;" />
+                    <Label fx:id="lblCorreo" style="-fx-text-fill: white; -fx-font-size: 12;" />
+                </VBox>
+            </HBox>
+
+
+            <!-- TABPANE PRINCIPAL -->
+            <TabPane fx:id="tabPaneUsuario"
+                     tabClosingPolicy="UNAVAILABLE"
+                     VBox.vgrow="ALWAYS">
+
+                <!-- =====================
+                     MIS ENVÍOS
+                ======================= -->
+                <Tab text="Mis Envíos">
+                    <BorderPane>
+                        <padding>
+                            <Insets top="10" bottom="10" left="10" right="10"/>
+                        </padding>
+
+                        <center>
+                            <TableView fx:id="tblEnvios">
+                                <columns>
+                                    <TableColumn fx:id="colIdEnvio" text="ID Envío" prefWidth="150"/>
+                                    <TableColumn fx:id="colEstadoEnvio" text="Estado" prefWidth="150"/>
+                                    <TableColumn fx:id="colFechaEnvio" text="Fecha" prefWidth="200"/>
+                                </columns>
+                            </TableView>
+                        </center>
+                    </BorderPane>
+                </Tab>
+
+
+                <!-- =====================
+                     MIS PAGOS
+                ======================= -->
+                <Tab text="Mis Pagos">
+                    <BorderPane>
+                        <padding>
+                            <Insets top="10" bottom="10" left="10" right="10"/>
+                        </padding>
+
+                        <center>
+                            <TableView fx:id="tblPagos">
+                                <columns>
+                                    <TableColumn fx:id="colIdPago" text="ID Pago" prefWidth="150"/>
+                                    <TableColumn fx:id="colMontoPago" text="Monto" prefWidth="150"/>
+                                    <TableColumn fx:id="colMetodoPago" text="Método" prefWidth="150"/>
+                                    <TableColumn fx:id="colResultadoPago" text="Resultado" prefWidth="150"/>
+                                </columns>
+                            </TableView>
+                        </center>
+                    </BorderPane>
+                </Tab>
+
+
+                <!-- =====================
+                     TARIFAS
+                ======================= -->
+                <Tab text="Tarifas">
+                    <BorderPane>
+                        <padding>
+                            <Insets top="10" bottom="10" left="10" right="10"/>
+                        </padding>
+
+                        <center>
+                            <TableView fx:id="tblTarifas">
+                                <columns>
+                                    <TableColumn fx:id="colIdTarifa" text="ID Tarifa" prefWidth="150"/>
+                                    <TableColumn fx:id="colCostoBase" text="Costo Base" prefWidth="200"/>
+                                </columns>
+                            </TableView>
+                        </center>
+                    </BorderPane>
+                </Tab>
+
+
+                <!-- =====================
+                     CALCULAR COSTO
+                ======================= -->
+                <Tab text="Calcular costo">
+
+                    <BorderPane>
+                        <padding>
+                            <Insets top="20" bottom="20" left="20" right="20"/>
+                        </padding>
+
+                        <center>
+                            <VBox spacing="15" alignment="CENTER">
+
+                                <GridPane hgap="10" vgap="10">
+                                    <columnConstraints>
+                                        <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                                        <ColumnConstraints minWidth="150"/>
+                                    </columnConstraints>
+
+                                    <Label text="Peso (kg):" GridPane.rowIndex="0"/>
+                                    <TextField fx:id="txtPeso" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                    <Label text="Volumen (m³):" GridPane.rowIndex="1"/>
+                                    <TextField fx:id="txtVolumen" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                    <Label text="Envío local:" GridPane.rowIndex="2"/>
+                                    <CheckBox fx:id="chkLocal" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                </GridPane>
+
+                                <Button text="Calcular" onAction="#calcularCosto"/>
+
+                                <Label text="Costo estimado:"/>
+
+                                <!-- ESTA LÍNEA ES LA QUE SE ARREGLÓ -->
+                                <Label fx:id="lblCostoCalculado"
+                                       text="0"
+                                       style="-fx-font-size: 18;"/>
+
+                            </VBox>
+                        </center>
+
+                    </BorderPane>
+                </Tab>
+
+            </TabPane>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

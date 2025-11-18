@@ -48,6 +48,19 @@ public class ModelFactory {
         empresaLogistica = new EmpresaLogistica();
         empresaLogistica.setNombre("Logística Express S.A.S");
 
+        Administrador admin = new Administrador(
+                "ADMIN01",
+                "Administrador General",
+                "admin@empresa.com",
+                "3100000000",
+                "1234"     // clave
+        );
+
+        empresaLogistica.setAdministrador(admin);
+
+
+        empresaLogistica.setAdministrador(admin);
+
         Usuario usuario1 = new Usuario("U001", "Juan Pérez", "juan@example.com", "3001234567", "1234567890");
         Usuario usuario2 = new Usuario("U002", "María Gómez", "maria@correo.com", "abcd", "234567891");
 
@@ -79,8 +92,25 @@ public class ModelFactory {
         empresaLogisticaFacade.getDireccionService().crearDireccion(dirOrigen2);
         empresaLogisticaFacade.getDireccionService().crearDireccion(dirDestino2);
 
-        Pago pago1 = new Pago("P001", 20000, MetodoPago.TARJETA_CREDITO, ResultadoPago.APROBADO);
-        Pago pago2 = new Pago("P002", 35000, MetodoPago.TARJETA_DEBITO, ResultadoPago.RECHAZADO);
+        Pago pago1 = new Pago(
+                "P001",
+                20000,
+                MetodoPago.TARJETA_CREDITO,
+                ResultadoPago.APROBADO,
+                usuario1
+        );
+
+        Pago pago2 = new Pago(
+                "P002",
+                35000,
+                MetodoPago.TARJETA_DEBITO,
+                ResultadoPago.RECHAZADO,
+                usuario2
+        );
+
+        empresaLogisticaFacade.getPagoService().crearPago(pago1);
+        empresaLogisticaFacade.getPagoService().crearPago(pago2);
+
         empresaLogisticaFacade.getPagoService().crearPago(pago1);
         empresaLogisticaFacade.getPagoService().crearPago(pago2);
 

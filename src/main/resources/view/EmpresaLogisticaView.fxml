@@ -16,9 +16,10 @@
                  AnchorPane.topAnchor="0.0"
                  AnchorPane.leftAnchor="0.0"
                  AnchorPane.rightAnchor="0.0"
-                 AnchorPane.bottomAnchor="80.0"
+                 AnchorPane.bottomAnchor="0.0"
                  style="-fx-tab-min-width: 120px; -fx-tab-max-width: 120px; -fx-tab-min-height: 40px;">
             <tabs>
+
                 <!-- === Usuarios === -->
                 <Tab fx:id="tabUsuarios" text="Usuarios">
                     <content>
@@ -63,19 +64,6 @@
 
             </tabs>
         </TabPane>
-
-        <!-- 🔵 Botón: Iniciar Sesión -->
-        <Button text="Iniciar Sesión"
-                prefWidth="200"
-                layoutX="350"
-                layoutY="530"
-                style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-
-        <!-- 🔗 Link: Registrarse -->
-        <Hyperlink text="¿No tienes un usuario? Registrarse"
-                   layoutX="350"
-                   layoutY="565"
-                   style="-fx-font-size: 14px;" />
 
     </children>
 

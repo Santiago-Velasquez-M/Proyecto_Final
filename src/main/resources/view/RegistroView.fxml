@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.biblioteca.parcial1.ViewController.RegistroUsuarioViewController"
+            prefWidth="500" prefHeight="450"
+            style="-fx-background-color: linear-gradient(to bottom, #E9F3FF, #C9DDFF);">
+
+    <children>
+
+        <VBox spacing="20" alignment="TOP_CENTER" prefWidth="420" layoutX="40" layoutY="30"
+              style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10,0,0,4);">
+
+            <!-- Título -->
+            <Label text="Registro de Usuario"
+                   style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #003366;" />
+
+            <!-- Formulario -->
+            <GridPane hgap="15" vgap="18">
+
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="130"/>
+                    <ColumnConstraints minWidth="220"/>
+                </columnConstraints>
+
+                <!-- Nombre -->
+                <Label text="Nombre completo:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                       style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+                <TextField fx:id="txtNombreCompleto" promptText="Ingrese el nombre"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8; -fx-padding: 6;" />
+
+                <!-- Documento -->
+                <Label text="Documento:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                       style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+                <TextField fx:id="txtDocumento" promptText="Ingrese el documento"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8; -fx-padding: 6;" />
+
+                <!-- Teléfono -->
+                <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                       style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+                <TextField fx:id="txtTelefono" promptText="Ingrese el teléfono"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8; -fx-padding: 6;" />
+
+                <!-- Correo -->
+                <Label text="Correo:" GridPane.rowIndex="3" GridPane.columnIndex="0"
+                       style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+                <TextField fx:id="txtCorreo" promptText="Ingrese el correo"
+                           GridPane.rowIndex="3" GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8; -fx-padding: 6;" />
+
+            </GridPane>
+
+            <!-- Botón Registrar -->
+            <Button fx:id="btnRegistrar"
+                    text="Registrar Usuario"
+                    onAction="#registrarUsuario"
+                    style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #007BFF;
+                           -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 10 20;
+                           -fx-cursor: hand;"
+                    prefWidth="220"
+            />
+
+        </VBox>
+    </children>
+
+</AnchorPane>

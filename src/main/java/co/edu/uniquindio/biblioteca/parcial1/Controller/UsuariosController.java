@@ -1,18 +1,20 @@
 package co.edu.uniquindio.biblioteca.parcial1.Controller;
 
 import co.edu.uniquindio.biblioteca.parcial1.Dto.UsuarioDto;
+import co.edu.uniquindio.biblioteca.parcial1.Factory.ModelFactory;
 import co.edu.uniquindio.biblioteca.parcial1.Facade.EmpresaLogisticaFacade;
 import co.edu.uniquindio.biblioteca.parcial1.Model.Usuario;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UsuarioController {
+public class UsuariosController {
 
     private final EmpresaLogisticaFacade empresaLogisticaFacade;
 
-    public UsuarioController() {
-        this.empresaLogisticaFacade = new EmpresaLogisticaFacade();
+    public UsuariosController() {
+        this.empresaLogisticaFacade =
+                (EmpresaLogisticaFacade) ModelFactory.getInstance().getEmpresaLogisticaFacade();
     }
 
     public List<Usuario> listarUsuarios() {

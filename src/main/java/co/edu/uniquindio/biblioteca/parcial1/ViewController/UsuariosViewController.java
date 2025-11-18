@@ -1,6 +1,6 @@
 package co.edu.uniquindio.biblioteca.parcial1.ViewController;
 
-import co.edu.uniquindio.biblioteca.parcial1.Controller.UsuarioController;
+import co.edu.uniquindio.biblioteca.parcial1.Controller.UsuariosController;
 import co.edu.uniquindio.biblioteca.parcial1.Dto.UsuarioDto;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -21,7 +21,7 @@ public class UsuariosViewController {
     @FXML private TableColumn<UsuarioDto, String> colTelefono;
     @FXML private TableColumn<UsuarioDto, String> colDocumento;
 
-    private final UsuarioController usuarioController = new UsuarioController();
+    private final UsuariosController usuariosController = new UsuariosController();
 
     @FXML
     public void initialize() {
@@ -45,7 +45,7 @@ public class UsuariosViewController {
     }
 
     private void cargarTabla() {
-        tblUsuarios.setItems(FXCollections.observableArrayList(usuarioController.listarUsuariosDto()));
+        tblUsuarios.setItems(FXCollections.observableArrayList(usuariosController.listarUsuariosDto()));
     }
 
     @FXML
@@ -65,7 +65,7 @@ public class UsuariosViewController {
                 txtDocumento.getText()
         );
 
-        usuarioController.crearUsuarioDto(nuevo);
+        usuariosController.crearUsuarioDto(nuevo);
         info("Usuario agregado correctamente");
         limpiar();
         cargarTabla();
@@ -85,7 +85,7 @@ public class UsuariosViewController {
                 txtDocumento.getText()
         );
 
-        usuarioController.actualizarUsuarioDto(sel.getIdUsuario(), actualizado);
+        usuariosController.actualizarUsuarioDto(sel.getIdUsuario(), actualizado);
         info("Usuario actualizado");
         limpiar();
         cargarTabla();
@@ -96,7 +96,7 @@ public class UsuariosViewController {
         UsuarioDto sel = tblUsuarios.getSelectionModel().getSelectedItem();
         if (sel == null) { error("Selecciona un usuario"); return; }
 
-        usuarioController.eliminarUsuarioDto(sel.getIdUsuario());
+        usuariosController.eliminarUsuarioDto(sel.getIdUsuario());
         info("Usuario eliminado");
         limpiar();
         cargarTabla();

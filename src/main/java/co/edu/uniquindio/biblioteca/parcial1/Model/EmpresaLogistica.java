@@ -8,6 +8,7 @@ public class EmpresaLogistica {
 
 
     private String nombre;
+    private Administrador administrador;
     private List<Direccion> direcciones = new ArrayList<>();
     private List<Envio> envios = new ArrayList<>();
     private List<Pago> pagos = new ArrayList<>();
@@ -36,6 +37,14 @@ public class EmpresaLogistica {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Administrador getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
     }
 
     public List<Direccion> getDirecciones() {

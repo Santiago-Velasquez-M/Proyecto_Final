@@ -5,31 +5,22 @@ public class Administrador extends Usuario {
     private String clave;
 
     public Administrador(String idUsuario, String nombre, String correo, String telefono, String clave) {
-        super(idUsuario, nombre, correo, telefono);
+        super(idUsuario, nombre, correo, telefono, ""); // documento vacío
         this.clave = clave;
     }
 
     public Administrador() {
-        super("", "", "", "");
+        super("", "", "", "", "");
         this.clave = "";
     }
 
+    // getters
     public String getClave() {
         return clave;
     }
 
     public void setClave(String clave) {
         this.clave = clave;
-    }
-
-    @Override
-    public String toString() {
-        return "Administrador{" +
-                "idUsuario='" + getIdUsuario() + '\'' +
-                ", nombre='" + getNombreCompleto() + '\'' +
-                ", correo='" + getCorreo() + '\'' +
-                ", telefono='" + getTelefono() + '\'' +
-                '}';
     }
 
     public boolean validarClave(String claveIngresada) {

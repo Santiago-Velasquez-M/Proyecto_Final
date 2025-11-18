@@ -13,7 +13,6 @@ public class Usuario {
     private ArrayList<Direccion> direcciones;
     private ArrayList<MetodoPago> metodosPago;
 
-    // ✅ Constructor principal (el que sí vamos a usar)
     public Usuario(String idUsuario, String nombreCompleto, String correo, String telefono, String documento) {
         this.idUsuario = idUsuario;
         this.nombreCompleto = nombreCompleto;
@@ -24,12 +23,10 @@ public class Usuario {
         this.metodosPago = new ArrayList<>();
     }
 
-    // ✅ Constructor alterno (si en algún lado lo usas sin documento)
     public Usuario(String idUsuario, String nombreCompleto, String correo, String telefono) {
         this(idUsuario, nombreCompleto, correo, telefono, ""); // documento vacío por defecto
     }
 
-    // getters y setters...
     public String getIdUsuario() { return idUsuario; }
     public void setIdUsuario(String idUsuario) { this.idUsuario = idUsuario; }
 
